@@ -1,0 +1,98 @@
+/* File: src/app/globals.css */
+@import "tailwindcss";
+
+:root {
+  --canvas: #f5f7f2;
+  --surface: #ffffff;
+  --surface-muted: #edf2ed;
+  --ink: #102028;
+  --muted: #5d6a72;
+  --line: #d7e0db;
+  --brand: #18394c;
+  --brand-strong: #102b3a;
+  --accent: #2f8a73;
+  --accent-soft: #dbefe8;
+  --warm: #f0e7d4;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-warm: var(--warm);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(47, 138, 115, 0.08), transparent 22%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.6), transparent 18rem),
+    var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  border-color: var(--line);
+}
+
+::selection {
+  background: rgba(24, 57, 76, 0.16);
+  color: var(--ink);
+}
+
+a,
+button,
+input,
+select,
+textarea,
+summary {
+  outline-color: var(--brand);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+
+.hero-float {
+  animation: hero-float 8s ease-in-out infinite;
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
