@@ -33,7 +33,7 @@ export default function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <ActionLink href="#contact" className="hidden sm:inline-flex">
-            Send a task
+            Send a sample file
           </ActionLink>
 
           <button
@@ -81,7 +81,7 @@ export default function SiteHeader() {
               </a>
             ))}
             <ActionLink href="#contact" className="mt-2 w-full">
-              Send a task
+              Send a sample file
             </ActionLink>
           </div>
         </nav>

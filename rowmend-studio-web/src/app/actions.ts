@@ -21,7 +21,7 @@ export async function submitContact(
     return { success: false, error: "Please enter your name." };
   }
   if (!contact?.trim()) {
-    return { success: false, error: "Please enter your email or phone number." };
+    return { success: false, error: "Please enter your email address." };
   }
   if (!description?.trim()) {
     return { success: false, error: "Please describe your task or file." };
