@@ -1,3 +1,4 @@
+// File: rowmend-studio-web/src/app/_components/landing-page.tsx
 import { cn } from "@/lib/cn";
 import {
   Accordion,
@@ -48,17 +49,17 @@ import styles from "./landing-page.module.css";
 function HeroSection() {
   return (
     <section id="home" className={cn("border-b border-line/70", styles.heroShell)}>
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-16 pt-10 sm:px-6 sm:pb-20 lg:grid-cols-[minmax(0,1.05fr)_minmax(21rem,0.95fr)] lg:gap-18 lg:pt-18">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-16 pt-6 sm:px-6 sm:pb-20 lg:grid-cols-[minmax(0,1.05fr)_minmax(21rem,0.95fr)] lg:gap-9 lg:pt-9">
         <div className="space-y-7">
-          <p className="text-sm font-medium text-brand/78">
+          <p className="text-lg font-medium text-brand/78">
             Spreadsheet cleanup and CRM data cleanup for small teams
           </p>
 
           <div className="space-y-4">
-            <h1 className="max-w-4xl text-balance font-serif text-[2.95rem] font-semibold tracking-[-0.065em] text-ink sm:text-[4.2rem] lg:text-[5.1rem] lg:leading-[0.97]">
+            <h1 className="max-w-4xl text-balance font-serif text-[2rem] sm:text-[2.5rem] lg:text-[3.5rem] lg:leading-[0.97]">
               {heroTitle}
             </h1>
-            <p className="max-w-2xl text-pretty text-lg leading-8 text-muted sm:text-[1.28rem]">
+            <p className="max-w-2xl text-pretty text-lg leading-8 text-muted text-[1rem] ">
               {heroSubheadline}
             </p>
             <p className="max-w-xl text-base leading-7 text-muted">{heroLead}</p>
@@ -371,11 +372,7 @@ function PricingSection() {
                   </h3>
                   <p className="mt-2 text-sm leading-7 text-muted">{plan.note}</p>
                 </div>
-                {plan.featured ? (
-                  <span className="rounded-full border border-brand/14 bg-white px-3 py-1 text-xs font-medium text-brand">
-                    Best fit for most cleanup jobs
-                  </span>
-                ) : null}
+              
               </div>
 
               <p className="mt-8 text-base font-semibold text-brand">{plan.price}</p>

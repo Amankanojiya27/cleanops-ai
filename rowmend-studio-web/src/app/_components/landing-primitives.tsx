@@ -1,3 +1,4 @@
+// File: rowmend-studio-web/src/app/_components/landing-primitives.tsx
 import { cn } from "@/lib/cn";
 import { brandName, serviceOptions } from "../_content/site-content";
 
@@ -39,13 +40,13 @@ export function SectionIntro({
 }) {
   return (
     <div className={cn("max-w-3xl space-y-3", centered && "mx-auto text-center")}>
-      <p className="text-sm font-medium text-brand/78">
+      <p className="text-lg font-medium text-brand/78">
         {eyebrow}
       </p>
-      <h2 className="font-serif text-balance text-3xl font-semibold tracking-[-0.045em] text-ink sm:text-4xl lg:text-[2.85rem] lg:leading-[1.08]">
+      <h2 className="font-serif text-balance text-3xl sm:text-4xl lg:text-[2.85rem]">
         {title}
       </h2>
-      <p className="max-w-[60ch] text-pretty text-base leading-7 text-muted sm:text-lg">
+      <p className="max-w-[60ch] text-pretty text-base leading-7 text-muted sm:text-[1.05rem]">
         {description}
       </p>
     </div>
