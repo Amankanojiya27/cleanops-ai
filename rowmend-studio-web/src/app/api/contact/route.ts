@@ -1,14 +1,9 @@
 // File: rowmend-studio-web/src/app/api/contact/route.ts
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import { sendContactEmail, validateContactSubmission } from "@/lib/contact-email";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-const resendApiKey = process.env.RESEND_API_KEY;
-const contactFrom = process.env.CONTACT_FROM;
-const contactTo = process.env.CONTACT_TO;
-const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 export async function POST(request: Request) {
   try {
@@ -19,76 +14,29 @@ export async function POST(request: Request) {
     const description = formData.get("description") as string;
     const file = formData.get("file") as File | null;
 
-    if (!name?.trim() || !contact?.trim() || !description?.trim()) {
+    const validationError = validateContactSubmission({ name, contact, description });
+    if (validationError) {
       return NextResponse.json(
-        { error: "Name, contact, and description are required." },
+        { error: validationError },
         { status: 400 },
       );
     }
 
-    if (!resend || !contactFrom || !contactTo) {
-      return NextResponse.json(
-        {
-          error: "Email delivery is not configured yet. Please try again later.",
-        },
-        { status: 500 },
-      );
-    }
-
-    const attachments =
-      file && file.size > 0
-        ? [
-            {
-              filename: file.name,
-              content: Buffer.from(await file.arrayBuffer()),
-            },
-          ]
-        : [];
-
-    const submittedAt = new Date().toLocaleString("en-IN", {
-      dateStyle: "medium",
-      timeStyle: "short",
-      timeZone: "Asia/Kolkata",
+    const result = await sendContactEmail({
+      name,
+      contact,
+      service: service || "Spreadsheet cleanup",
+      description,
+      file,
     });
 
-    const { error } = await resend.emails.send({
-      from: contactFrom,
-      to: [contactTo],
-      replyTo: contact,
-      subject: `New cleanup request from ${name}`,
-      text: [
-        "New contact form submission",
-        "",
-        `Name: ${name}`,
-        `Contact: ${contact}`,
-        `Service: ${service || "Spreadsheet cleanup"}`,
-        `Submitted: ${submittedAt}`,
-        "",
-        "Description:",
-        description,
-        "",
-        file && file.size > 0 ? `Attachment: ${file.name}` : "Attachment: None",
-      ].join("\n"),
-      html: `
-        <div style="font-family: Arial, sans-serif; color: #171c18; line-height: 1.6;">
-          <h2 style="margin: 0 0 16px;">New contact form submission</h2>
-          <p style="margin: 0 0 8px;"><strong>Name:</strong> ${escapeHtml(name)}</p>
-          <p style="margin: 0 0 8px;"><strong>Contact:</strong> ${escapeHtml(contact)}</p>
-          <p style="margin: 0 0 8px;"><strong>Service:</strong> ${escapeHtml(service || "Spreadsheet cleanup")}</p>
-          <p style="margin: 0 0 16px;"><strong>Submitted:</strong> ${escapeHtml(submittedAt)}</p>
-          <p style="margin: 0 0 8px;"><strong>Description:</strong></p>
-          <div style="padding: 12px 14px; border: 1px solid #dfe8de; background: #f4faf1; border-radius: 12px; white-space: pre-wrap;">${escapeHtml(description)}</div>
-          <p style="margin: 16px 0 0;"><strong>Attachment:</strong> ${file && file.size > 0 ? escapeHtml(file.name) : "None"}</p>
-        </div>
-      `,
-      attachments,
-    });
-
-    if (error) {
-      console.error("Resend contact form delivery failed:", error);
+    if (!result.ok) {
+      if ("cause" in result && result.cause) {
+        console.error("Resend contact form delivery failed:", result.cause);
+      }
 
       return NextResponse.json(
-        { error: "Something went wrong. Please try again or reach out via WhatsApp." },
+        { error: result.error },
         { status: 500 },
       );
     }
@@ -102,13 +50,4 @@ export async function POST(request: Request) {
       { status: 500 },
     );
   }
-}
-
-function escapeHtml(value: string) {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
 }

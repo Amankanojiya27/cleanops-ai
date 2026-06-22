@@ -1,6 +1,8 @@
 // File: rowmend-studio-web/src/app/actions.ts
 "use server";
 
+import { sendContactEmail, validateContactSubmission } from "@/lib/contact-email";
+
 const emailAddress = "hello@rowmend.studio";
 
 export type ContactState = {
@@ -18,38 +20,26 @@ export async function submitContact(
   const description = formData.get("description") as string;
   const file = formData.get("file") as File | null;
 
-  if (!name?.trim()) {
-    return { success: false, error: "Please enter your name." };
-  }
-  if (!contact?.trim()) {
-    return { success: false, error: "Please enter your email address." };
-  }
-  if (!description?.trim()) {
-    return { success: false, error: "Please describe your task or file." };
+  const validationError = validateContactSubmission({ name, contact, description });
+  if (validationError) {
+    return { success: false, error: validationError };
   }
 
   try {
-    const body = new FormData();
-    body.set("name", name);
-    body.set("contact", contact);
-    body.set("service", service || "Spreadsheet cleanup");
-    body.set("description", description);
-    if (file && file.size > 0) {
-      body.set("file", file);
-    }
-
-    const origin =
-      process.env.SITE_URL ||
-      process.env.NEXT_PUBLIC_SITE_URL ||
-      "http://localhost:3000";
-    const res = await fetch(`${origin}/api/contact`, {
-      method: "POST",
-      body,
+    const result = await sendContactEmail({
+      name,
+      contact,
+      service: service || "Spreadsheet cleanup",
+      description,
+      file,
     });
 
-    if (!res.ok) {
-      const data = await res.json();
-      return { success: false, error: data.error || "Failed to send request." };
+    if (!result.ok) {
+      if ("cause" in result && result.cause) {
+        console.error("Contact form delivery failed:", result.cause);
+      }
+
+      return { success: false, error: result.error };
     }
 
     return { success: true };
