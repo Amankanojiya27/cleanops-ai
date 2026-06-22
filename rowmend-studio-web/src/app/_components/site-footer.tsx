@@ -1,6 +1,7 @@
 import {
   brandName,
   emailAddress,
+  footerNote,
   footerLinks,
   tagline,
   whatsappLink,
@@ -22,6 +23,7 @@ export default function SiteFooter() {
             </div>
           </div>
           <p className="mt-4 max-w-md text-sm leading-7 text-muted">{tagline}</p>
+          <p className="mt-3 max-w-md text-sm leading-7 text-muted/90">{footerNote}</p>
           <div className="mt-5">
             <ActionLink href="#contact">Start a Task</ActionLink>
           </div>

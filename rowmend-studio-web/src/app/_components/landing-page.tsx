@@ -1,8 +1,8 @@
 import {
   afterItems,
   audienceChips,
-  beforeItems,
   benefits,
+  beforeItems,
   brandName,
   contactCards,
   contactSupportText,
@@ -10,8 +10,10 @@ import {
   faqs,
   heroHighlights,
   heroLead,
+  heroMetrics,
   heroSubheadline,
   heroTitle,
+  outputDetails,
   outputItems,
   plans,
   pricingNote,
@@ -22,7 +24,6 @@ import {
   steps,
   tagline,
   trustChips,
-  useCases,
   whatsappLink,
 } from "../_content/site-content";
 import {
@@ -40,7 +41,7 @@ import SiteHeader from "./site-header";
 function HeroSection() {
   return (
     <section id="home" className="border-b border-line/70">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-14 pt-10 sm:px-6 sm:pb-18 lg:grid-cols-[1.05fr_0.95fr] lg:pb-24 lg:pt-18">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-14 pt-10 sm:px-6 sm:pb-18 lg:grid-cols-[1.03fr_0.97fr] lg:pb-24 lg:pt-18">
         <div className="relative z-10 space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-brand/12 bg-white/88 px-3 py-2 shadow-[var(--shadow-card)] backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-accent" />
@@ -50,7 +51,7 @@ function HeroSection() {
           </div>
 
           <div className="space-y-5">
-            <h1 className="max-w-4xl text-balance text-[2.9rem] font-semibold tracking-[-0.07em] text-ink sm:text-6xl lg:text-[4.85rem] lg:leading-[1.02]">
+            <h1 className="font-serif max-w-4xl text-balance text-[3rem] font-semibold tracking-[-0.05em] text-ink sm:text-[4.4rem] lg:text-[5.35rem] lg:leading-[0.98]">
               {heroTitle}
             </h1>
             <p className="max-w-2xl text-pretty text-lg leading-8 text-muted sm:text-xl">
@@ -68,24 +69,39 @@ function HeroSection() {
             </ActionLink>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-3 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
             {heroHighlights.map((item) => (
               <ProofCard key={item.title} item={item} />
             ))}
           </div>
 
-          <div className="space-y-3">
-            <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted">
-              Best fit for
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {audienceChips.map((chip) => (
-                <span
-                  key={chip}
-                  className="rounded-full border border-line bg-surface px-3 py-1.5 text-sm text-muted shadow-[0_8px_24px_rgba(23,33,38,0.04)]"
+          <div className="grid gap-4 rounded-[1.8rem] border border-line/70 bg-white/72 p-4 shadow-[var(--shadow-card)] md:grid-cols-[1.1fr_0.9fr]">
+            <div className="space-y-3">
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+                Best fit for
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {audienceChips.map((chip) => (
+                  <span
+                    key={chip}
+                    className="rounded-full border border-line bg-surface px-3 py-1.5 text-sm text-muted"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3 md:grid-cols-1">
+              {heroMetrics.map((metric) => (
+                <div
+                  key={metric.value}
+                  className="rounded-[1.1rem] border border-line/70 bg-surface px-4 py-3"
                 >
-                  {chip}
-                </span>
+                  <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">
+                    {metric.value}
+                  </p>
+                  <p className="mt-1 text-sm leading-6 text-muted">{metric.label}</p>
+                </div>
               ))}
             </div>
           </div>
@@ -200,48 +216,87 @@ function HeroSection() {
   );
 }
 
-function TrustStrip() {
+function ContextSection() {
   return (
-    <section className="border-b border-line/70 bg-white/55">
-      <div className="mx-auto grid max-w-7xl gap-4 px-4 py-5 sm:px-6 lg:grid-cols-4">
-        {proofItems.map((item) => (
-          <div
-            key={item.title}
-            className="rounded-[1.3rem] border border-line/60 bg-surface/90 px-4 py-4 shadow-[0_10px_24px_rgba(23,33,38,0.04)]"
-          >
-            <p className="text-sm font-semibold text-ink">{item.title}</p>
-            <p className="mt-1 text-sm leading-6 text-muted">{item.detail}</p>
+    <section className="border-y border-line/70 bg-white/60">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-18 sm:px-6 sm:py-22 lg:grid-cols-[0.92fr_1.08fr]">
+        <div className="space-y-8">
+          <SectionIntro
+            eyebrow="The problem"
+            title={sectionCopy.problem.title}
+            description={sectionCopy.problem.description}
+          />
+
+          <div className="space-y-3">
+            {problems.map((problem, index) => (
+              <article
+                key={problem.title}
+                className={cx(
+                  "rounded-[1.6rem] border border-line/70 bg-surface p-5 shadow-[var(--shadow-card)]",
+                  index === 1 && "lg:ml-8",
+                )}
+              >
+                <h3 className="text-lg font-semibold tracking-[-0.02em] text-ink">
+                  {problem.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-muted">{problem.detail}</p>
+              </article>
+            ))}
           </div>
-        ))}
-      </div>
-    </section>
-  );
-}
+        </div>
 
-function ProblemSection() {
-  return (
-    <section className="mx-auto max-w-7xl px-4 py-18 sm:px-6 sm:py-22">
-      <SectionIntro
-        eyebrow="The problem"
-        title={sectionCopy.problem.title}
-        description={sectionCopy.problem.description}
-      />
-
-      <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {problems.map((problem) => (
-          <article
-            key={problem.title}
-            className="rounded-[1.55rem] border border-line/70 bg-surface p-5 shadow-[var(--shadow-card)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_24px_56px_rgba(23,33,38,0.08)]"
-          >
-            <div className="mb-4 h-11 w-11 rounded-2xl bg-surface-soft p-3 text-brand">
-              <span className="block h-full w-full rounded-full border border-brand/10" />
+        <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="rounded-[2rem] border border-brand/10 bg-brand p-6 text-white shadow-[0_24px_60px_rgba(23,33,38,0.12)]">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/70">
+              Trust and fit
+            </p>
+            <div className="mt-5 grid gap-4">
+              {proofItems.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-[1.15rem] border border-white/10 bg-white/6 px-4 py-4"
+                >
+                  <p className="text-sm font-semibold text-white">{item.title}</p>
+                  <p className="mt-1 text-sm leading-6 text-white/78">{item.detail}</p>
+                </div>
+              ))}
             </div>
-            <h3 className="text-lg font-semibold tracking-[-0.02em] text-ink">
-              {problem.title}
-            </h3>
-            <p className="mt-3 text-sm leading-7 text-muted">{problem.detail}</p>
-          </article>
-        ))}
+          </div>
+
+          <div className="space-y-5">
+            <div className="rounded-[1.8rem] border border-line/70 bg-surface p-5 shadow-[var(--shadow-card)]">
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">
+                Best suited to
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {audienceChips.map((chip) => (
+                  <span
+                    key={chip}
+                    className="rounded-full border border-line bg-surface-soft px-3 py-1.5 text-sm text-muted"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[1.8rem] border border-line/70 bg-surface-soft p-5">
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
+                Common file types
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {trustChips.map((chip) => (
+                  <span
+                    key={chip}
+                    className="rounded-full border border-line bg-surface px-3 py-1.5 text-sm text-muted"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -249,35 +304,40 @@ function ProblemSection() {
 
 function ServicesSection() {
   return (
-    <section id="services" className="border-y border-line/70 bg-[#fffdfa]/90">
-      <div className="mx-auto max-w-7xl px-4 py-18 sm:px-6 sm:py-22">
+    <section id="services" className="mx-auto max-w-7xl px-4 py-18 sm:px-6 sm:py-22">
+      <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
         <SectionIntro
           eyebrow="Services"
           title={sectionCopy.services.title}
           description={sectionCopy.services.description}
-          centered
         />
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
-          {serviceOptions.map((service) => (
+        <div className="grid gap-5">
+          {serviceOptions.map((service, index) => (
             <article
               key={service.title}
-              className="rounded-[1.8rem] border border-line/70 bg-surface p-6 shadow-[var(--shadow-card)]"
+              className={cx(
+                "grid gap-5 rounded-[1.85rem] border border-line/70 bg-surface p-6 shadow-[var(--shadow-card)] md:grid-cols-[auto_1fr_auto]",
+                index % 2 === 0 && "md:mr-10",
+                index % 2 === 1 && "md:ml-10",
+              )}
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface-soft">
                 <ServiceIcon name={service.icon} />
               </div>
-              <h3 className="mt-5 text-xl font-semibold tracking-[-0.03em] text-ink">
-                {service.title}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-muted">
-                {service.description}
-              </p>
-              <div className="mt-5 space-y-2 border-t border-line/70 pt-5 text-sm">
-                <p className="text-muted">{service.audience}</p>
+              <div>
+                <h3 className="text-xl font-semibold tracking-[-0.03em] text-ink">
+                  {service.title}
+                </h3>
+                <p className="mt-3 max-w-xl text-sm leading-7 text-muted">
+                  {service.description}
+                </p>
+              </div>
+              <div className="space-y-2 border-t border-line/70 pt-4 text-sm md:border-t-0 md:border-l md:pl-5 md:pt-0">
                 <p className="font-mono font-semibold uppercase tracking-[0.16em] text-brand">
                   {service.price}
                 </p>
+                <p className="text-muted md:max-w-[16rem]">{service.audience}</p>
               </div>
             </article>
           ))}
@@ -298,8 +358,8 @@ function TransformationSection() {
         />
 
         <div className="space-y-5">
-          <div className="grid gap-5 rounded-[2rem] border border-line/70 bg-surface p-5 shadow-[var(--shadow-panel)] md:grid-cols-2">
-            <div className="rounded-[1.5rem] bg-[#fbf8f2] p-5">
+          <div className="grid gap-5 rounded-[2.15rem] border border-line/70 bg-surface p-5 shadow-[var(--shadow-panel)] lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="rounded-[1.6rem] bg-[#fbf8f2] p-5">
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
                 Before
               </p>
@@ -313,7 +373,8 @@ function TransformationSection() {
               </ul>
             </div>
 
-            <div className="rounded-[1.5rem] bg-accent-soft/78 p-5">
+            <div className="grid gap-5 lg:grid-cols-[1fr_0.84fr]">
+              <div className="rounded-[1.6rem] bg-accent-soft/78 p-5">
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
                 After
               </p>
@@ -326,21 +387,19 @@ function TransformationSection() {
                 ))}
               </ul>
             </div>
-          </div>
-
-          <div className="rounded-[1.8rem] border border-brand/10 bg-brand p-6 text-white shadow-[0_24px_60px_rgba(23,33,38,0.12)]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/70">
-              Typical handoff
-            </p>
-            <div className="mt-4 grid gap-4 sm:grid-cols-3">
-              {outputItems.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-[1.25rem] border border-white/10 bg-white/6 p-4 text-sm leading-6 text-white/84"
-                >
-                  {item}
+              <div className="rounded-[1.6rem] border border-brand/10 bg-brand p-5 text-white">
+                <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/70">
+                  What the handoff includes
+                </p>
+                <div className="mt-4 space-y-3">
+                  {outputDetails.map((item) => (
+                    <div key={item} className="flex gap-3 text-sm leading-7 text-white/84">
+                      <CheckMark className="text-[#d7e4d9]" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>
@@ -352,54 +411,48 @@ function TransformationSection() {
 function ProcessSection() {
   return (
     <section id="process" className="border-y border-line/70 bg-surface-soft/60">
-      <div className="mx-auto max-w-7xl px-4 py-18 sm:px-6 sm:py-22">
-        <SectionIntro
-          eyebrow="How it works"
-          title={sectionCopy.process.title}
-          description={sectionCopy.process.description}
-          centered
-        />
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-18 sm:px-6 sm:py-22 lg:grid-cols-[1.06fr_0.94fr]">
+        <div>
+          <SectionIntro
+            eyebrow="How it works"
+            title={sectionCopy.process.title}
+            description={sectionCopy.process.description}
+          />
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-4">
-          {steps.map((step) => (
-            <article
-              key={step.number}
-              className="rounded-[1.75rem] border border-line/70 bg-surface p-6 shadow-[var(--shadow-card)]"
-            >
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand text-sm font-semibold text-white">
-                {step.number}
-              </div>
-              <h3 className="mt-5 text-lg font-semibold tracking-[-0.02em] text-ink">
-                {step.title}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-muted">{step.detail}</p>
-            </article>
-          ))}
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {steps.map((step) => (
+              <article
+                key={step.number}
+                className="rounded-[1.75rem] border border-line/70 bg-surface p-6 shadow-[var(--shadow-card)]"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand text-sm font-semibold text-white">
+                  {step.number}
+                </div>
+                <h3 className="mt-5 text-lg font-semibold tracking-[-0.02em] text-ink">
+                  {step.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-muted">{step.detail}</p>
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  );
-}
 
-function UseCasesSection() {
-  return (
-    <section className="mx-auto max-w-7xl px-4 py-18 sm:px-6 sm:py-22">
-      <SectionIntro
-        eyebrow="Use cases"
-        title={sectionCopy.useCases.title}
-        description={sectionCopy.useCases.description}
-        centered
-      />
-
-      <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {useCases.map((item) => (
-          <article
-            key={item}
-            className="rounded-[1.5rem] border border-line/70 bg-surface p-5 shadow-[var(--shadow-card)]"
-          >
-            <p className="text-base leading-7 text-ink">{item}</p>
-          </article>
-        ))}
+        <div className="rounded-[2rem] border border-line/70 bg-surface p-6 shadow-[var(--shadow-panel)]">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">
+            Why the process works for lean teams
+          </p>
+          <div className="mt-5 space-y-4">
+            {benefits.map((benefit) => (
+              <div
+                key={benefit}
+                className="flex gap-3 rounded-[1.2rem] border border-line/70 bg-surface-soft px-4 py-4"
+              >
+                <CheckMark />
+                <p className="text-sm leading-7 text-ink">{benefit}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -407,136 +460,98 @@ function UseCasesSection() {
 
 function PricingSection() {
   return (
-    <section id="pricing" className="border-y border-line/70 bg-[#fffdfa]/90">
-      <div className="mx-auto max-w-7xl px-4 py-18 sm:px-6 sm:py-22">
+    <section id="pricing" className="mx-auto max-w-7xl px-4 py-18 sm:px-6 sm:py-22">
+      <div className="grid gap-8 lg:grid-cols-[0.84fr_1.16fr]">
         <SectionIntro
           eyebrow="Pricing"
           title={sectionCopy.pricing.title}
           description={sectionCopy.pricing.description}
-          centered
         />
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
-          {plans.map((plan) => (
-            <article
-              key={plan.name}
-              className={cx(
-                "rounded-[2rem] border p-6 shadow-[var(--shadow-card)]",
-                plan.featured
-                  ? "border-brand bg-brand text-white shadow-[0_26px_70px_rgba(23,33,38,0.14)]"
-                  : "border-line/70 bg-surface",
-              )}
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <h3 className="text-2xl font-semibold tracking-[-0.04em]">
-                    {plan.name}
-                  </h3>
-                  <p
-                    className={cx(
-                      "mt-3 text-sm leading-7",
-                      plan.featured ? "text-white/80" : "text-muted",
-                    )}
-                  >
-                    {plan.audience}
-                  </p>
-                </div>
-                {plan.featured ? (
-                  <span className="rounded-full bg-white/10 px-3 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-white">
-                    Best starting point
-                  </span>
-                ) : null}
-              </div>
-
-              <p className="mt-8 font-mono text-sm font-semibold uppercase tracking-[0.18em]">
-                {plan.price}
-              </p>
-
-              <ul className="mt-6 space-y-3">
-                {plan.items.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm leading-7">
-                    <CheckMark className={plan.featured ? "text-[#d9e6da]" : undefined} />
-                    <span className={plan.featured ? "text-white/88" : "text-ink"}>
-                      {item}
+        <div className="space-y-8">
+          <div className="grid gap-5 lg:grid-cols-3">
+            {plans.map((plan) => (
+              <article
+                key={plan.name}
+                className={cx(
+                  "rounded-[2rem] border p-6 shadow-[var(--shadow-card)]",
+                  plan.featured
+                    ? "border-brand bg-brand text-white shadow-[0_26px_70px_rgba(23,33,38,0.14)] lg:-translate-y-4"
+                    : "border-line/70 bg-surface",
+                )}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <h3 className="text-2xl font-semibold tracking-[-0.04em]">
+                      {plan.name}
+                    </h3>
+                    <p
+                      className={cx(
+                        "mt-3 text-sm leading-7",
+                        plan.featured ? "text-white/80" : "text-muted",
+                      )}
+                    >
+                      {plan.audience}
+                    </p>
+                  </div>
+                  {plan.featured ? (
+                    <span className="rounded-full bg-white/10 px-3 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-white">
+                      Best starting point
                     </span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
+                  ) : null}
+                </div>
 
-        <div className="mt-8 rounded-[1.5rem] border border-line/70 bg-surface px-5 py-4 text-center text-sm text-muted shadow-[var(--shadow-card)]">
-          {pricingNote}
-        </div>
+                <p className="mt-8 font-mono text-sm font-semibold uppercase tracking-[0.18em]">
+                  {plan.price}
+                </p>
 
-        <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-          <ActionLink href="#contact">Send a File</ActionLink>
-          <ActionLink href="#contact" tone="secondary">
-            Ask About Monthly Support
-          </ActionLink>
-        </div>
-      </div>
-    </section>
-  );
-}
+                <ul className="mt-6 space-y-3">
+                  {plan.items.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-7">
+                      <CheckMark className={plan.featured ? "text-[#d9e6da]" : undefined} />
+                      <span className={plan.featured ? "text-white/88" : "text-ink"}>
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
 
-function WhySection() {
-  return (
-    <section className="mx-auto max-w-7xl px-4 py-18 sm:px-6 sm:py-22">
-      <div className="grid gap-8 lg:grid-cols-[0.96fr_1.04fr]">
-        <SectionIntro
-          eyebrow="Why RowMend Studio"
-          title={sectionCopy.why.title}
-          description={sectionCopy.why.description}
-        />
-
-        <div className="grid gap-4 md:grid-cols-2">
-          {benefits.map((benefit) => (
-            <article
-              key={benefit}
-              className="rounded-[1.5rem] border border-line/70 bg-surface p-5 shadow-[var(--shadow-card)]"
-            >
-              <div className="flex gap-3">
-                <CheckMark />
-                <p className="text-sm leading-7 text-ink">{benefit}</p>
+          <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="rounded-[1.8rem] border border-line/70 bg-surface-soft p-5">
+              <p className="text-sm leading-7 text-muted">{pricingNote}</p>
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                <ActionLink href="#contact">Send a File</ActionLink>
+                <ActionLink href="#contact" tone="secondary">
+                  Ask About Monthly Support
+                </ActionLink>
               </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+            </div>
 
-function FaqSection() {
-  return (
-    <section id="faq" className="border-y border-line/70 bg-surface-soft/60">
-      <div className="mx-auto max-w-5xl px-4 py-18 sm:px-6 sm:py-22">
-        <SectionIntro
-          eyebrow="FAQ"
-          title={sectionCopy.faq.title}
-          description={sectionCopy.faq.description}
-          centered
-        />
-
-        <div className="mt-10 space-y-4">
-          {faqs.map((item) => (
-            <details
-              key={item.question}
-              className="group rounded-[1.5rem] border border-line/70 bg-surface p-5 shadow-[var(--shadow-card)]"
-            >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-lg font-semibold tracking-[-0.02em] text-ink">
-                {item.question}
-                <span className="inline-flex h-9 w-9 flex-none items-center justify-center rounded-full border border-line bg-surface-soft text-brand transition group-open:rotate-45">
-                  +
-                </span>
-              </summary>
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-muted">
-                {item.answer}
+            <div id="faq" className="space-y-3">
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">
+                Practical questions
               </p>
-            </details>
-          ))}
+              {faqs.map((item) => (
+                <details
+                  key={item.question}
+                  className="group rounded-[1.4rem] border border-line/70 bg-surface p-5 shadow-[var(--shadow-card)]"
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-base font-semibold tracking-[-0.02em] text-ink">
+                    {item.question}
+                    <span className="inline-flex h-8 w-8 flex-none items-center justify-center rounded-full border border-line bg-surface-soft text-brand transition group-open:rotate-45">
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-4 max-w-2xl text-sm leading-7 text-muted">
+                    {item.answer}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -713,15 +728,11 @@ export default function LandingPage() {
 
       <main id="main-content" className="relative pb-28 md:pb-0">
         <HeroSection />
-        <TrustStrip />
-        <ProblemSection />
+        <ContextSection />
         <ServicesSection />
         <TransformationSection />
         <ProcessSection />
-        <UseCasesSection />
         <PricingSection />
-        <WhySection />
-        <FaqSection />
         <ContactSection />
       </main>
 

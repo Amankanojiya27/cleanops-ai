@@ -63,18 +63,17 @@ export const navigation: NavItem[] = [
   { href: "#services", label: "Services" },
   { href: "#process", label: "Process" },
   { href: "#pricing", label: "Pricing" },
-  { href: "#faq", label: "FAQ" },
   { href: "#contact", label: "Contact" },
 ];
 
 export const heroTitle =
-  "Turn messy files, scattered records, and repetitive admin work into clean, usable outputs.";
+  "Cleaner records. Better handoffs. Less admin drag.";
 
 export const heroSubheadline =
-  "RowMend Studio helps small businesses, agencies, consultants, and lean teams clean spreadsheets, repair contact data, summarize documents, and offload repetitive back-office work with AI-assisted, human-reviewed delivery.";
+  "RowMend Studio cleans spreadsheets, repairs contact data, summarizes documents, and supports recurring back-office work for teams that need usable output, not more software.";
 
 export const heroLead =
-  "Send the file or task, confirm the scope, and receive a cleaner handoff without adding a complicated new system.";
+  "Send the file or task, confirm the scope, and get a cleaner, reviewed handoff that is ready to use.";
 
 export const heroHighlights: Highlight[] = [
   {
@@ -89,6 +88,12 @@ export const heroHighlights: Highlight[] = [
     title: "Straightforward starting price",
     detail: "Small cleanup tasks start from $15 / INR 999, with scope confirmed before work begins.",
   },
+];
+
+export const heroMetrics = [
+  { value: "CSV to CRM", label: "Built for real files already moving through the business" },
+  { value: "One task or monthly", label: "Useful for one-off cleanup or recurring support" },
+  { value: "Reviewed handoff", label: "Delivered with notes instead of a blind export" },
 ];
 
 export const audienceChips = [
@@ -124,27 +129,15 @@ export const proofItems: Highlight[] = [
 export const problems: Problem[] = [
   {
     title: "Messy spreadsheets",
-    detail: "Exports arrive with inconsistent columns, broken formatting, and too much manual cleanup left to do.",
+    detail: "Exports arrive with broken formatting, mixed column logic, and too much manual cleanup left behind.",
   },
   {
     title: "Duplicate contacts",
-    detail: "Repeated names, stale records, and mixed formatting make contact data unreliable.",
-  },
-  {
-    title: "Unorganized lead data",
-    detail: "Lead research ends up scattered across tabs, loose notes, and half-finished sheets.",
-  },
-  {
-    title: "Long recordings",
-    detail: "Calls, meetings, podcasts, and interviews still need transcripts and usable takeaways.",
-  },
-  {
-    title: "Too much copy-paste work",
-    detail: "Simple admin tasks keep eating time that should be spent on delivery, sales, or clients.",
+    detail: "Repeated names, stale records, and inconsistent fields make CRM data harder to trust.",
   },
   {
     title: "Wasted admin hours",
-    detail: "Small teams end up fixing the back office late at night or between more important work.",
+    detail: "Lean teams end up patching the back office late at night or between client work.",
   },
 ];
 
@@ -219,6 +212,12 @@ export const outputItems = [
   "Optional next-step recommendations",
 ];
 
+export const outputDetails = [
+  "Usable columns, clean formatting, and fewer surprises in the handoff",
+  "Clear notes on what was fixed, merged, removed, or standardized",
+  "Optional suggestions for recurring support or a lightweight workflow next step",
+];
+
 export const steps: Step[] = [
   {
     number: "01",
@@ -282,7 +281,6 @@ export const useCases = [
   "Build a lead research sheet for outreach or sourcing",
   "Prepare an ecommerce product CSV for upload",
   "Summarize long business documents into action notes",
-  "Set up a simple recurring workflow for repetitive admin",
 ];
 
 export const benefits = [
@@ -325,53 +323,38 @@ export const faqs: FAQ[] = [
     answer:
       "Yes. Monthly support is available for recurring spreadsheet cleanup, summaries, admin assistance, and simple workflow help.",
   },
-  {
-    question: "Can you work with international clients?",
-    answer:
-      "Yes. The pricing and contact flow work for both local and international clients.",
-  },
-  {
-    question: "What if I am not satisfied?",
-    answer:
-      "If something in the agreed scope needs adjustment, reply with the issue and it can be reviewed against the original task and delivery notes.",
-  },
 ];
 
 export const sectionCopy = {
   problem: {
-    title: "When the back office is messy, everything else slows down.",
+    title: "When the back office is messy, client-facing work pays for it.",
     description:
-      "Old exports, duplicate contacts, scattered notes, long recordings, and manual copy-paste work create friction for teams that should be focused on clients, sales, and delivery.",
+      "Broken exports, duplicate contacts, scattered notes, and repetitive admin work create avoidable drag for teams that should be moving faster.",
   },
   services: {
-    title: "Practical support for the work that keeps getting pushed back.",
+    title: "A tighter set of services for the tasks that keep coming back.",
     description:
-      "From one-off cleanup tasks to recurring back-office support, each service is meant to save time and return something your team can use immediately.",
+      "Each offer is built around a business task that needs a cleaner output, a clearer structure, or less manual effort next time.",
   },
   transformation: {
-    title: "From raw exports to a cleaner, more confident handoff.",
+    title: "From raw export to a cleaner handoff your team can actually use.",
     description:
-      "The goal is not just to process information. It is to return something clearer, more organized, and easier for your team to work with.",
+      "The point is not just to process the file. It is to return something clearer, more structured, and easier to keep moving with.",
   },
   process: {
     title: "Simple from first file to final delivery.",
     description:
-      "The process stays lightweight so you can hand off the work quickly and know what to expect.",
+      "The process stays lightweight, but the handoff stays disciplined.",
   },
   useCases: {
-    title: `Examples of the work ${brandName} is built to handle.`,
+    title: `Typical tasks ${brandName} is asked to clean up.`,
     description:
-      "These are the kinds of practical tasks small businesses, agencies, consultants, and creators usually send first.",
+      "Concrete, practical jobs tend to convert better than broad promises, so the site leans into what the work actually looks like.",
   },
   pricing: {
-    title: "Straightforward pricing for one-off tasks and recurring support.",
+    title: "Straightforward pricing, plus the details people usually ask first.",
     description:
-      "Choose the level that matches the amount of cleanup, summarization, or admin support you need to hand off.",
-  },
-  why: {
-    title: `Why teams choose ${brandName}.`,
-    description:
-      "The service is designed to feel dependable, clear, and useful from the first message to the final file.",
+      "Choose the level that fits the work, then review the practical questions alongside it instead of hunting for them further down the page.",
   },
   faq: {
     title: "Questions people usually ask before sending a task.",
@@ -398,6 +381,9 @@ export const footerLinks = [
 
 export const contactSupportText =
   "The business model is simple: send the task, confirm the scope, and receive cleaned, organized, summarized, or supported output without turning it into a much bigger project.";
+
+export const footerNote =
+  "A service business for teams that need cleaner files and less admin drag, not another bloated tool.";
 
 export const emailAddress = "hello@rowmend.studio";
 

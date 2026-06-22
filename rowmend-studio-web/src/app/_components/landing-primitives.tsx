@@ -48,7 +48,7 @@ export function SectionIntro({
       <p className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-brand">
         {eyebrow}
       </p>
-      <h2 className="text-balance text-3xl font-semibold tracking-[-0.05em] text-ink sm:text-4xl lg:text-[2.8rem]">
+      <h2 className="font-serif text-balance text-3xl font-semibold tracking-[-0.04em] text-ink sm:text-4xl lg:text-[2.9rem] lg:leading-[1.08]">
         {title}
       </h2>
       <p className="text-pretty text-base leading-8 text-muted sm:text-lg">
@@ -197,7 +197,7 @@ export function DataRow({
 
 export function ProofCard({ item }: { item: Highlight }) {
   return (
-    <article className="rounded-[1.4rem] border border-line/70 bg-surface p-4 shadow-[var(--shadow-card)]">
+    <article className="rounded-[1.2rem] border border-line/60 bg-transparent p-4">
       <h2 className="text-sm font-semibold text-ink">{item.title}</h2>
       <p className="mt-2 text-sm leading-6 text-muted">{item.detail}</p>
     </article>

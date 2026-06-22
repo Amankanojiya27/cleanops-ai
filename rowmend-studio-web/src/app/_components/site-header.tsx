@@ -30,6 +30,17 @@ export default function SiteHeader() {
           Send a File
         </ActionLink>
       </div>
+      <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 pb-3 sm:px-6 lg:hidden">
+        {navigation.map((item) => (
+          <a
+            key={item.href}
+            href={item.href}
+            className="shrink-0 rounded-full border border-line bg-surface px-3 py-1.5 text-sm text-muted"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
     </header>
   );
 }
