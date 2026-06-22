@@ -3,16 +3,6 @@ export type NavItem = {
   label: string;
 };
 
-export type Highlight = {
-  title: string;
-  detail: string;
-};
-
-export type Problem = {
-  title: string;
-  detail: string;
-};
-
 export type Service = {
   icon:
     | "spreadsheet"
@@ -23,7 +13,6 @@ export type Service = {
     | "automation";
   title: string;
   description: string;
-  audience: string;
   price: string;
 };
 
@@ -36,7 +25,7 @@ export type Step = {
 export type Plan = {
   name: string;
   price: string;
-  audience: string;
+  note: string;
   featured?: boolean;
   items: string[];
 };
@@ -44,13 +33,6 @@ export type Plan = {
 export type FAQ = {
   question: string;
   answer: string;
-};
-
-export type ContactCard = {
-  channel: string;
-  title: string;
-  detail: string;
-  href: string;
 };
 
 export const brandName = "RowMend Studio";
@@ -66,324 +48,161 @@ export const navigation: NavItem[] = [
 ];
 
 export const heroTitle =
-  "Cleaner records. Better handoffs. Less admin drag.";
+  "Turn messy files and repetitive admin work into cleaner business output.";
 
 export const heroSubheadline =
-  "RowMend Studio cleans spreadsheets, repairs contact data, summarizes documents, and supports recurring back-office work for teams that need usable output, not more software.";
+  "RowMend Studio helps small businesses clean spreadsheets, repair contact data, summarize documents, and handle recurring back-office support.";
 
 export const heroLead =
-  "Send the file or task, confirm the scope, and get a cleaner, reviewed handoff that is ready to use.";
+  "For founders, agencies, consultants, and lean teams that need usable handoffs without adding more software.";
 
-export const heroHighlights: Highlight[] = [
-  {
-    title: "Human-reviewed delivery",
-    detail: "Work is checked before it comes back to your team, not sent as a raw draft.",
-  },
-  {
-    title: "Common business file types",
-    detail: "CSV, XLSX, PDF, DOC, MP3, MP4, and exported CRM lists are all familiar territory.",
-  },
-  {
-    title: "Straightforward starting price",
-    detail: "Small cleanup tasks start from $15 / INR 999, with scope confirmed before work begins.",
-  },
+export const trustItems = [
+  "Reviewed delivery",
+  "Clear scope before work starts",
+  "One-off tasks or monthly support",
+  "CSV, CRM, docs, audio, and notes",
 ];
 
-export const heroMetrics = [
-  { value: "CSV to CRM", label: "Built for real files already moving through the business" },
-  { value: "One task or monthly", label: "Useful for one-off cleanup or recurring support" },
-  { value: "Reviewed handoff", label: "Delivered with notes instead of a blind export" },
-];
-
-export const audienceChips = [
-  "Small businesses",
-  "Agencies",
-  "Founders",
-  "Consultants",
-  "Recruiters",
-  "Creators",
-];
-
-export const trustChips = ["CSV / XLSX", "CRM exports", "PDF / DOC", "Audio / video"];
-
-export const proofItems: Highlight[] = [
-  {
-    title: "Scope confirmed first",
-    detail: "You get clarity on the work, pricing, and delivery before the task starts.",
-  },
-  {
-    title: "Suitable for small teams",
-    detail: "Built for businesses that need help without hiring full-time ops support.",
-  },
-  {
-    title: "Reviewed handoff notes",
-    detail: "Delivered files come with a short summary of what changed and what to know next.",
-  },
-  {
-    title: "Monthly support available",
-    detail: "Recurring back-office help is available when cleanup and admin work keeps coming back.",
-  },
-];
-
-export const problems: Problem[] = [
-  {
-    title: "Messy spreadsheets",
-    detail: "Exports arrive with broken formatting, mixed column logic, and too much manual cleanup left behind.",
-  },
-  {
-    title: "Duplicate contacts",
-    detail: "Repeated names, stale records, and inconsistent fields make CRM data harder to trust.",
-  },
-  {
-    title: "Wasted admin hours",
-    detail: "Lean teams end up patching the back office late at night or between client work.",
-  },
-];
+export const servicesLead =
+  "A compact set of services built for the cleanup and support work that quietly slows small teams down.";
 
 export const serviceOptions: Service[] = [
   {
     icon: "spreadsheet",
     title: "Spreadsheet cleanup",
-    description:
-      "Fix formatting, standardize columns, remove duplicates, and turn messy exports into usable working files.",
-    audience: "Ideal for small businesses, operations teams, and agencies.",
+    description: "Standardize columns, remove duplicates, and return a file that is ready to use.",
     price: "From $15 / INR 999",
-  },
-  {
-    icon: "research",
-    title: "Lead research",
-    description:
-      "Build structured lead sheets with the right fields, categories, and notes for outreach or qualification.",
-    audience: "Ideal for consultants, recruiters, and outbound-focused teams.",
-    price: "From $29 / INR 2,199",
-  },
-  {
-    icon: "transcription",
-    title: "Transcription and summaries",
-    description:
-      "Turn calls, meetings, podcasts, or videos into readable transcripts and action-ready notes.",
-    audience: "Ideal for creators, coaches, recruiters, and founders.",
-    price: "From $39 / INR 2,999",
   },
   {
     icon: "crm",
     title: "CRM and contact cleanup",
-    description:
-      "Repair contact exports, clean records, and prepare customer data for import, follow-up, or review.",
-    audience: "Ideal for sales teams, agencies, and service businesses.",
+    description: "Repair exports, clean records, and organize contact data for import or follow-up.",
     price: "From $25 / INR 1,999",
   },
   {
-    icon: "summary",
-    title: "Document summarization",
-    description:
-      "Condense reports, SOPs, proposals, and research files into concise business notes.",
-    audience: "Ideal for consultants, course creators, and busy decision-makers.",
-    price: "From $19 / INR 1,499",
+    icon: "transcription",
+    title: "Transcription and summaries",
+    description: "Turn meetings, calls, or recordings into concise transcripts and useful notes.",
+    price: "From $39 / INR 2,999",
   },
   {
     icon: "automation",
-    title: "Recurring support and simple automation",
-    description:
-      "Set up simple AI-assisted workflows and support recurring tasks that keep pulling your team back into admin work.",
-    audience: "Ideal for growing small teams that want less manual work.",
+    title: "Recurring support",
+    description: "Handle recurring admin work and lightweight workflow help without building a bigger system.",
     price: "From $49 / INR 3,999",
   },
 ];
 
 export const beforeItems = [
-  "Duplicate rows",
-  "Messy names and inconsistent formatting",
-  "Broken emails and empty fields",
-  "Unorganized columns and unclear labels",
+  "Duplicate rows and broken formatting",
+  "Inconsistent names, emails, or status labels",
+  "Loose notes and unclear ownership",
 ];
 
 export const afterItems = [
-  "Clean formatting and structured columns",
-  "Deduplicated contacts and records",
-  "Clear categories and useful tags",
-  "Client-ready file plus summary notes",
+  "Structured columns and cleaner formatting",
+  "Deduplicated records and standardized fields",
+  "Short delivery note with what changed",
 ];
 
 export const outputItems = [
   "Clean working file",
-  "Short delivery note on what changed",
-  "Optional next-step recommendations",
-];
-
-export const outputDetails = [
-  "Usable columns, clean formatting, and fewer surprises in the handoff",
-  "Clear notes on what was fixed, merged, removed, or standardized",
-  "Optional suggestions for recurring support or a lightweight workflow next step",
+  "Reviewed handoff notes",
+  "Optional next-step suggestion",
 ];
 
 export const steps: Step[] = [
   {
     number: "01",
-    title: "Send your file or task",
-    detail: "Share the spreadsheet, document, recording, or admin task that needs attention.",
+    title: "Send a sample or task",
+    detail: "Share the file, recording, or recurring task that needs attention.",
   },
   {
     number: "02",
-    title: "We review and confirm scope",
-    detail: "You get a clear reply on what will be done, the expected timing, and the price.",
+    title: "Review scope and price",
+    detail: "You get a clear reply on timing, cost, and what the handoff will include.",
   },
   {
     number: "03",
-    title: "We clean, organize, and review",
-    detail: "The work is completed with AI-assisted speed and a final human review before handoff.",
-  },
-  {
-    number: "04",
-    title: "You receive the final output",
-    detail: "Receive a cleaner file, transcript, summary, or organized deliverable with short delivery notes.",
+    title: "Receive the cleaned output",
+    detail: "The work is completed, reviewed, and returned in a format your team can use right away.",
   },
 ];
 
 export const plans: Plan[] = [
   {
-    name: "Starter Task",
+    name: "Starter",
     price: "$15 / INR 999",
-    audience: "For small cleanup jobs and quick admin tasks",
+    note: "For quick cleanup and one-off admin tasks.",
     items: [
-      "Single cleanup, summary, or small admin task",
-      "Good for short spreadsheets, exports, and one-off fixes",
-      "Delivered with a clean output and handoff note",
+      "Small spreadsheet or export cleanup",
+      "Short summary or simple admin task",
+      "Delivered with a brief handoff note",
     ],
   },
   {
-    name: "Standard Task",
+    name: "Standard",
     price: "$39 / INR 2,999",
-    audience: "For larger files, transcription, or structured research work",
+    note: "For larger files, transcription, or structured support work.",
     featured: true,
     items: [
-      "Larger spreadsheet, CRM, or contact cleanup jobs",
-      "Meeting, podcast, or interview transcript plus summary",
-      "Lead research sheet with organized fields and categories",
+      "CRM cleanup or larger spreadsheet work",
+      "Meeting transcript with concise summary",
+      "More time for detail and review",
     ],
   },
   {
-    name: "Monthly Support",
+    name: "Monthly",
     price: "$199 / INR 14,999",
-    audience: "For recurring back-office work across the month",
+    note: "For recurring back-office support across the month.",
     items: [
-      "Ongoing spreadsheet, summary, and admin help",
-      "Simple workflow support for repetitive tasks",
-      "Best for agencies, consultants, and lean teams",
+      "Ongoing cleanup and admin support",
+      "Lightweight workflow help for repeat tasks",
+      "Best for lean teams with steady volume",
     ],
   },
 ];
 
-export const benefits = [
-  "Human-reviewed output, not raw AI-generated drafts.",
-  "Clear scope, timing, and pricing before work begins.",
-  "Files delivered with notes, not just processed and returned.",
-  "Privacy-conscious handling for business files and recordings.",
-  "Useful for small teams that do not need more software complexity.",
-  "Monthly support available when back-office work keeps returning.",
-];
+export const pricingNote =
+  "Final pricing depends on file size, complexity, and turnaround.";
 
 export const faqs: FAQ[] = [
   {
-    question: "What type of files can I send?",
+    question: "What can I send?",
     answer:
-      "You can send spreadsheets, CSV exports, PDFs, documents, audio files, video files, and task notes. If you are not sure, send a sample first and the fit can be confirmed.",
+      "Spreadsheets, CSV exports, CRM lists, documents, audio, video, and clear task notes are all fine. If you are unsure, send a sample first.",
   },
   {
-    question: "Do you use AI only or human review too?",
+    question: "Is the work AI-only?",
     answer:
-      "The workflow is AI-assisted for speed, but the final output is reviewed before delivery so the result is more reliable and easier to use.",
+      "No. The process is AI-assisted for speed, but the final handoff is reviewed before delivery.",
   },
   {
-    question: "How fast is delivery?",
+    question: "How fast is turnaround?",
     answer:
-      "Turnaround depends on file size and scope. Smaller tasks can move quickly, while larger files, research, or transcription work may need more time. You will get an estimate before work starts.",
+      "Smaller tasks can move quickly. Larger files or recordings may need more time, and that is confirmed before work starts.",
   },
   {
-    question: "Is my data private?",
+    question: "Do you offer ongoing help?",
     answer:
-      "Yes. The process is designed to be privacy-conscious and focused only on the task you send over.",
-  },
-  {
-    question: "Can you handle large files?",
-    answer:
-      "Yes. Larger spreadsheets, exports, and longer recordings can be handled after a quick scope review and pricing confirmation.",
-  },
-  {
-    question: "Do you offer monthly support?",
-    answer:
-      "Yes. Monthly support is available for recurring spreadsheet cleanup, summaries, admin assistance, and simple workflow help.",
+      "Yes. Monthly support is available for recurring cleanup, summaries, and back-office assistance.",
   },
 ];
 
-export const sectionCopy = {
-  problem: {
-    title: "When the back office is messy, client-facing work pays for it.",
-    description:
-      "Broken exports, duplicate contacts, scattered notes, and repetitive admin work create avoidable drag for teams that should be moving faster.",
-  },
-  services: {
-    title: "A tighter set of services for the tasks that keep coming back.",
-    description:
-      "Each offer is built around a business task that needs a cleaner output, a clearer structure, or less manual effort next time.",
-  },
-  transformation: {
-    title: "From raw export to a cleaner handoff your team can actually use.",
-    description:
-      "The point is not just to process the file. It is to return something clearer, more structured, and easier to keep moving with.",
-  },
-  process: {
-    title: "Simple from first file to final delivery.",
-    description:
-      "The process stays lightweight, but the handoff stays disciplined.",
-  },
-  pricing: {
-    title: "Straightforward pricing, plus the details people usually ask first.",
-    description:
-      "Choose the level that fits the work, then review the practical questions alongside it instead of hunting for them further down the page.",
-  },
-  contact: {
-    title: "Have a messy file or recurring admin task? Send it over.",
-    description:
-      "Use WhatsApp, email, or the short form below. A sample file or a clear task description is enough to get started.",
-  },
-};
-
-export const pricingNote =
-  "Final price depends on file size, deadline, and complexity.";
+export const contactIntro =
+  "Send a file, a task description, or a recurring support request. A sample is enough to start the conversation.";
 
 export const footerLinks = [
   "Spreadsheet cleanup",
-  "CRM and contact cleanup",
-  "Lead research",
-  "Transcription and summaries",
+  "CRM cleanup",
+  "Transcription",
   "Recurring support",
 ];
 
-export const contactSupportText =
-  "The business model is simple: send the task, confirm the scope, and receive cleaned, organized, summarized, or supported output without turning it into a much bigger project.";
-
 export const footerNote =
-  "A service business for teams that need cleaner files and less admin drag, not another bloated tool.";
+  "A service business for teams that need cleaner files and calmer back-office operations.";
 
 export const emailAddress = "hello@rowmend.studio";
 
 export const whatsappLink =
   "https://wa.me/919999999999?text=Hi%20RowMend%20Studio%2C%20I%20need%20help%20with%20a%20file%2C%20cleanup%20task%2C%20or%20recurring%20admin%20workflow.";
-
-export const contactCards: ContactCard[] = [
-  {
-    channel: "WhatsApp",
-    title: "Start on WhatsApp",
-    detail:
-      "Best for quick scope checks, urgent cleanup jobs, and simple task handoff.",
-    href: whatsappLink,
-  },
-  {
-    channel: "Email",
-    title: "Send a task by email",
-    detail:
-      "Better for longer descriptions, file samples, and recurring support requests.",
-    href: `mailto:${emailAddress}`,
-  },
-];

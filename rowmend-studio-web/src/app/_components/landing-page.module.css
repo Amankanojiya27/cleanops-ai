@@ -1,0 +1,143 @@
+.heroShell {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.heroShell::before {
+  content: "";
+  position: absolute;
+  left: -8%;
+  top: -14%;
+  width: 28rem;
+  height: 28rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(121, 165, 111, 0.12), rgba(121, 165, 111, 0));
+  filter: blur(34px);
+  pointer-events: none;
+}
+
+.heroShell::after {
+  content: "";
+  position: absolute;
+  right: 3%;
+  top: -20%;
+  width: 30rem;
+  height: 30rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(79, 124, 69, 0.08), rgba(79, 124, 69, 0));
+  filter: blur(46px);
+  pointer-events: none;
+}
+
+.heroPanel {
+  position: relative;
+  overflow: hidden;
+}
+
+.heroPanel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.32) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+  background-size: 2.75rem 2.75rem;
+  opacity: 0.32;
+  pointer-events: none;
+}
+
+.heroBeam {
+  position: absolute;
+  inset: -30% auto auto 42%;
+  width: 14rem;
+  height: 22rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.76),
+    rgba(255, 255, 255, 0)
+  );
+  clip-path: polygon(38% 0%, 62% 0%, 100% 100%, 0% 100%);
+  opacity: 0.54;
+  transform-origin: top center;
+  animation: hero-beam 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.heroFloat {
+  animation: hero-float 6s ease-in-out infinite;
+}
+
+.serviceRow {
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.serviceRow:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.processCard {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.processCard:hover {
+  transform: translateY(-2px);
+}
+
+.pricingFeatured {
+  position: relative;
+}
+
+.pricingFeatured::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes hero-beam {
+  0% {
+    transform: rotate(-6deg) translate3d(-1rem, 0, 0);
+  }
+
+  100% {
+    transform: rotate(6deg) translate3d(1.75rem, 0.4rem, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroBeam,
+  .heroFloat {
+    animation: none !important;
+  }
+
+  .serviceRow,
+  .processCard {
+    transition: none !important;
+  }
+
+  .serviceRow:hover,
+  .processCard:hover {
+    transform: none;
+  }
+}

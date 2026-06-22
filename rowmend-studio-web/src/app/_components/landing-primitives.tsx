@@ -1,24 +1,25 @@
 import { cn } from "@/lib/cn";
-import { brandName, serviceOptions, type Highlight } from "../_content/site-content";
+import { brandName, serviceOptions } from "../_content/site-content";
 
 export function BrandMark({ className }: { className?: string }) {
   return (
     <span
       aria-hidden
       className={cn(
-        "inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] border border-white/20 bg-brand text-white shadow-[var(--shadow-card)]",
+        "inline-flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)] border border-line/80 bg-white text-brand shadow-[var(--shadow-card)]",
         className,
       )}
     >
-      <svg viewBox="0 0 44 44" className="h-7 w-7" fill="none">
-        <rect x="8" y="10" width="18" height="5" rx="2.5" fill="currentColor" opacity="0.9" />
-        <rect x="8" y="19.5" width="12" height="5" rx="2.5" fill="currentColor" opacity="0.72" />
+      <svg viewBox="0 0 44 44" className="h-6 w-6" fill="none">
+        <rect x="8" y="10" width="18" height="5" rx="2.5" fill="currentColor" opacity="0.92" />
+        <rect x="8" y="19.5" width="12" height="5" rx="2.5" fill="currentColor" opacity="0.7" />
         <path
           d="M20.5 29.5 26 24l4 3.8L36 20"
-          stroke="#DDE8E3"
-          strokeWidth="3"
+          stroke="currentColor"
+          strokeWidth="2.6"
           strokeLinecap="round"
           strokeLinejoin="round"
+          opacity="0.7"
         />
       </svg>
     </span>
@@ -37,14 +38,14 @@ export function SectionIntro({
   centered?: boolean;
 }) {
   return (
-    <div className={cn("max-w-3xl space-y-4", centered && "mx-auto text-center")}>
-      <p className="font-mono text-[0.7rem] font-semibold uppercase tracking-[0.26em] text-brand">
+    <div className={cn("max-w-3xl space-y-3", centered && "mx-auto text-center")}>
+      <p className="text-sm font-medium text-brand/78">
         {eyebrow}
       </p>
-      <h2 className="font-serif text-balance text-3xl font-semibold tracking-[-0.04em] text-ink sm:text-4xl lg:text-[2.9rem] lg:leading-[1.08]">
+      <h2 className="font-serif text-balance text-3xl font-semibold tracking-[-0.045em] text-ink sm:text-4xl lg:text-[2.85rem] lg:leading-[1.08]">
         {title}
       </h2>
-      <p className="text-pretty text-base leading-8 text-muted sm:text-lg">
+      <p className="max-w-[60ch] text-pretty text-base leading-7 text-muted sm:text-lg">
         {description}
       </p>
     </div>
@@ -71,11 +72,11 @@ export function ActionLink({
       className={cn(
         "inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-4",
         tone === "primary" &&
-          "bg-brand text-white shadow-[var(--shadow-card)] hover:bg-brand-strong focus-visible:outline-brand",
+          "bg-brand text-white shadow-[var(--shadow-card)] hover:-translate-y-px hover:bg-brand-strong focus-visible:outline-brand",
         tone === "secondary" &&
-          "border border-line bg-surface text-ink hover:border-brand/25 hover:bg-surface-soft focus-visible:outline-brand",
+          "border border-brand/18 bg-white/96 text-ink hover:-translate-y-px hover:border-brand/30 hover:bg-surface-soft focus-visible:outline-brand",
         tone === "ghost" &&
-          "border border-white/15 bg-white/6 text-white hover:bg-white/12 focus-visible:outline-white",
+          "text-muted hover:text-ink focus-visible:outline-brand",
         className,
       )}
     >
@@ -88,7 +89,7 @@ export function CheckMark({ className }: { className?: string }) {
   return (
     <svg
       aria-hidden
-      className={cn("mt-1 h-4 w-4 flex-none text-accent", className)}
+      className={cn("mt-1 h-4 w-4 flex-none text-brand", className)}
       viewBox="0 0 16 16"
       fill="none"
     >
@@ -166,37 +167,6 @@ export function ServiceIcon({
   }
 }
 
-export function DataRow({
-  label,
-  tone = "neutral",
-}: {
-  label: string;
-  tone?: "neutral" | "danger" | "success";
-}) {
-  return (
-    <div className="grid grid-cols-[18px_1fr] items-center gap-3 rounded-[var(--radius-sm)] border border-line/80 bg-surface px-3 py-2.5">
-      <span
-        className={cn(
-          "h-2.5 w-2.5 rounded-full",
-          tone === "neutral" && "bg-line",
-          tone === "danger" && "bg-[#c57a63]",
-          tone === "success" && "bg-accent",
-        )}
-      />
-      <span className="text-sm text-ink">{label}</span>
-    </div>
-  );
-}
-
-export function ProofCard({ item }: { item: Highlight }) {
-  return (
-    <article className="rounded-[var(--radius-md)] border border-line/60 bg-white/42 p-4 backdrop-blur-sm">
-      <h2 className="text-sm font-semibold text-ink">{item.title}</h2>
-      <p className="mt-2 text-sm leading-6 text-muted">{item.detail}</p>
-    </article>
-  );
-}
-
 export function BrandLabel() {
   return (
     <span>
@@ -204,7 +174,7 @@ export function BrandLabel() {
         {brandName}
       </span>
       <span className="block text-xs text-muted">
-        AI-assisted data cleanup and back-office support
+        AI-assisted cleanup and back-office support
       </span>
     </span>
   );
