@@ -2,23 +2,27 @@
 @import "tailwindcss";
 
 :root {
-  --canvas: #f5f7f2;
-  --surface: #ffffff;
-  --surface-muted: #edf2ed;
-  --ink: #102028;
-  --muted: #5d6a72;
-  --line: #d7e0db;
-  --brand: #18394c;
-  --brand-strong: #102b3a;
-  --accent: #2f8a73;
-  --accent-soft: #dbefe8;
-  --warm: #f0e7d4;
+  --canvas: #f4f1ea;
+  --surface: #fffdf9;
+  --surface-soft: #f7f2e8;
+  --surface-strong: #ece4d6;
+  --ink: #172126;
+  --muted: #617076;
+  --line: #d9d0c2;
+  --brand: #203b45;
+  --brand-strong: #162e37;
+  --accent: #7b8f69;
+  --accent-soft: #e5eadc;
+  --warm: #eadac0;
+  --shadow-card: 0 18px 44px rgba(23, 33, 38, 0.06);
+  --shadow-panel: 0 28px 80px rgba(23, 33, 38, 0.08);
 }
 
 @theme inline {
   --color-canvas: var(--canvas);
   --color-surface: var(--surface);
-  --color-surface-muted: var(--surface-muted);
+  --color-surface-soft: var(--surface-soft);
+  --color-surface-strong: var(--surface-strong);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
@@ -27,8 +31,8 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --color-warm: var(--warm);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 html {
@@ -37,11 +41,12 @@ html {
 
 body {
   background:
-    radial-gradient(circle at top left, rgba(47, 138, 115, 0.08), transparent 22%),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.6), transparent 18rem),
+    radial-gradient(circle at top left, rgba(123, 143, 105, 0.09), transparent 22%),
+    radial-gradient(circle at top right, rgba(32, 59, 69, 0.06), transparent 24%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.58), transparent 20rem),
     var(--canvas);
   color: var(--ink);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   text-rendering: optimizeLegibility;
 }
 
@@ -50,7 +55,7 @@ body {
 }
 
 ::selection {
-  background: rgba(24, 57, 76, 0.16);
+  background: rgba(32, 59, 69, 0.16);
   color: var(--ink);
 }
 
@@ -69,7 +74,7 @@ summary {
 }
 
 .hero-float {
-  animation: hero-float 8s ease-in-out infinite;
+  animation: hero-float 9s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 @keyframes hero-float {
