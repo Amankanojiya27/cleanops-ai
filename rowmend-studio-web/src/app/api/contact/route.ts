@@ -1,29 +1,14 @@
 // File: rowmend-studio-web/src/app/api/contact/route.ts
-import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const smtpUser = process.env.SMTP_USER;
-const smtpAppPassword = process.env.SMTP_APP_PASSWORD;
-const contactTo = process.env.CONTACT_TO || smtpUser;
-
-function createTransporter() {
-  if (!smtpUser || !smtpAppPassword || !contactTo) {
-    return null;
-  }
-
-  return nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: smtpUser,
-      pass: smtpAppPassword,
-    },
-  });
-}
+const resendApiKey = process.env.RESEND_API_KEY;
+const contactFrom = process.env.CONTACT_FROM;
+const contactTo = process.env.CONTACT_TO;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 export async function POST(request: Request) {
   try {
@@ -41,8 +26,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const transporter = createTransporter();
-    if (!transporter) {
+    if (!resend || !contactFrom || !contactTo) {
       return NextResponse.json(
         {
           error: "Email delivery is not configured yet. Please try again later.",
@@ -57,7 +41,6 @@ export async function POST(request: Request) {
             {
               filename: file.name,
               content: Buffer.from(await file.arrayBuffer()),
-              contentType: file.type || "application/octet-stream",
             },
           ]
         : [];
@@ -68,9 +51,9 @@ export async function POST(request: Request) {
       timeZone: "Asia/Kolkata",
     });
 
-    await transporter.sendMail({
-      from: `"RowMend Studio Contact Form" <${smtpUser}>`,
-      to: contactTo,
+    const { error } = await resend.emails.send({
+      from: contactFrom,
+      to: [contactTo],
       replyTo: contact,
       subject: `New cleanup request from ${name}`,
       text: [
@@ -100,6 +83,15 @@ export async function POST(request: Request) {
       `,
       attachments,
     });
+
+    if (error) {
+      console.error("Resend contact form delivery failed:", error);
+
+      return NextResponse.json(
+        { error: "Something went wrong. Please try again or reach out via WhatsApp." },
+        { status: 500 },
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
