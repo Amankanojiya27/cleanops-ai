@@ -84,7 +84,7 @@ function HeroSection() {
 
         <div
           className={cn(
-            "rounded-[var(--radius-lg)] border border-line/70 bg-white/96 p-6 shadow-[var(--shadow-panel)] sm:p-7",
+            "rounded-lg border border-line/70 bg-white/96 p-6 shadow-(--shadow-panel) sm:p-7",
             styles.heroPanel,
             styles.heroFloat,
           )}
@@ -179,7 +179,7 @@ function ServicesSection() {
           description={servicesLead}
         />
 
-        <div className="rounded-[var(--radius-lg)] border border-line/70 bg-white shadow-[var(--shadow-panel)]">
+        <div className="rounded-lg border border-line/70 bg-white shadow-(--shadow-panel)">
           {serviceOptions.map((service, index) => (
             <article
               key={service.title}
@@ -191,7 +191,7 @@ function ServicesSection() {
             >
               <div
                 className={cn(
-                  "flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-surface-soft",
+                  "flex h-11 w-11 items-center justify-center rounded-md bg-surface-soft",
                   service.emphasis && "bg-accent-soft",
                 )}
               >
@@ -224,12 +224,12 @@ function SampleOutcomeSection() {
           description="The point is not only to clean the file, but to return something your team can review, trust, and use immediately."
         />
 
-        <div className="rounded-[var(--radius-lg)] border border-line/70 bg-white p-6 shadow-[var(--shadow-panel)] sm:p-7">
+        <div className="rounded-lg border border-line/70 bg-white p-6 shadow-(--shadow-panel) sm:p-7">
           <div className="grid gap-4 sm:grid-cols-2">
             {sampleOutcomeStats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-[var(--radius-md)] border border-line/70 bg-surface-soft px-4 py-4"
+                className="rounded-md border border-line/70 bg-surface-soft px-4 py-4"
               >
                 <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted">
                   {stat.label}
@@ -268,7 +268,7 @@ function TransformationSection() {
           description="The handoff should clearly show what was cleaned, what was flagged, and what can be used next."
         />
 
-        <div className="mt-10 rounded-[var(--radius-lg)] border border-line/70 bg-white p-6 shadow-[var(--shadow-panel)] sm:p-8">
+        <div className="mt-10 rounded-lg border border-line/70 bg-white p-6 shadow-(--shadow-panel) sm:p-8">
           <div className="grid gap-8 lg:grid-cols-[1fr_1fr_auto] lg:items-start">
             <div>
               <p className="text-sm font-medium text-muted">Before</p>
@@ -294,7 +294,7 @@ function TransformationSection() {
               </ul>
             </div>
 
-            <div className="rounded-[var(--radius-md)] border border-brand/10 bg-surface-soft px-5 py-4 lg:min-w-64">
+            <div className="rounded-md border border-brand/10 bg-surface-soft px-5 py-4 lg:min-w-64">
               <p className="text-sm font-medium text-muted">What you receive</p>
               <ul className="mt-3 space-y-3">
                 {outputItems.map((item) => (
@@ -326,7 +326,7 @@ function ProcessSection() {
           <article
             key={step.number}
             className={cn(
-              "rounded-[var(--radius-lg)] border border-line/70 bg-white p-6 shadow-[var(--shadow-card)]",
+              "rounded-lg border border-line/70 bg-white p-6 shadow-(--shadow-card)",
               styles.processCard,
             )}
           >
@@ -358,9 +358,9 @@ function PricingSection() {
             <article
               key={plan.name}
               className={cn(
-                "rounded-[var(--radius-lg)] border p-6 shadow-[var(--shadow-card)]",
+                "rounded-lg border p-6 shadow-(--shadow-card)",
                 plan.featured
-                  ? "border-brand/16 bg-surface-soft shadow-[var(--shadow-panel)]"
+                  ? "border-brand/16 bg-surface-soft shadow-(--shadow-panel)"
                   : "border-line/70 bg-white/96",
                 plan.featured && styles.pricingFeatured,
               )}
@@ -405,7 +405,7 @@ function FAQSection() {
           description="These answers are written to remove uncertainty before you send a sample file or request an estimate."
         />
 
-        <div className="rounded-[var(--radius-lg)] border border-line/70 bg-white shadow-[var(--shadow-panel)]">
+        <div className="rounded-lg border border-line/70 bg-white shadow-(--shadow-panel)">
           <Accordion type="single" collapsible>
             {faqs.map((item, index) => (
               <AccordionItem
@@ -440,7 +440,7 @@ function ContactSection() {
 
             <p className="max-w-xl text-sm leading-7 text-muted">{tagline}</p>
 
-            <div className="rounded-[var(--radius-lg)] border border-line/70 bg-white/90 p-5 sm:p-6">
+            <div className="rounded-lg border border-line/70 bg-white/90 p-5 sm:p-6">
               <div className="grid gap-3 text-sm text-muted">
                 {contactReassurance.map((item) => (
                   <div key={item} className="flex items-start gap-3">
@@ -465,7 +465,7 @@ function ContactSection() {
             </div>
           </div>
 
-          <div className="min-w-0 overflow-hidden rounded-[var(--radius-lg)] border border-line/70 bg-white p-5 shadow-[var(--shadow-panel)] sm:p-6 lg:p-7">
+          <div className="min-w-0 overflow-hidden rounded-lg border border-line/70 bg-white p-5 shadow-(--shadow-panel) sm:p-6 lg:p-7">
             <ContactForm />
           </div>
         </div>

@@ -1,3 +1,4 @@
+// File: rowmend-studio-web/src/app/_components/site-footer.tsx
 import {
   brandName,
   emailAddress,

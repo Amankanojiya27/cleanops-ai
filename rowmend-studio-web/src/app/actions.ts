@@ -1,3 +1,4 @@
+// File: rowmend-studio-web/src/app/actions.ts
 "use server";
 
 const emailAddress = "hello@rowmend.studio";
@@ -37,7 +38,10 @@ export async function submitContact(
       body.set("file", file);
     }
 
-    const origin = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const origin =
+      process.env.SITE_URL ||
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      "http://localhost:3000";
     const res = await fetch(`${origin}/api/contact`, {
       method: "POST",
       body,

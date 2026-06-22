@@ -1,30 +1,122 @@
+// File: rowmend-studio-web/src/app/api/contact/route.ts
+import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+const smtpUser = process.env.SMTP_USER;
+const smtpAppPassword = process.env.SMTP_APP_PASSWORD;
+const contactTo = process.env.CONTACT_TO || smtpUser;
+
+function createTransporter() {
+  if (!smtpUser || !smtpAppPassword || !contactTo) {
+    return null;
+  }
+
+  return nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: smtpUser,
+      pass: smtpAppPassword,
+    },
+  });
+}
 
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
     const name = formData.get("name") as string;
     const contact = formData.get("contact") as string;
-    formData.get("service");
+    const service = formData.get("service") as string;
     const description = formData.get("description") as string;
     const file = formData.get("file") as File | null;
 
-    if (!name || !contact || !description) {
+    if (!name?.trim() || !contact?.trim() || !description?.trim()) {
       return NextResponse.json(
         { error: "Name, contact, and description are required." },
         { status: 400 },
       );
     }
 
-    if (file && file.size > 0) {
-      await file.arrayBuffer();
+    const transporter = createTransporter();
+    if (!transporter) {
+      return NextResponse.json(
+        {
+          error: "Email delivery is not configured yet. Please try again later.",
+        },
+        { status: 500 },
+      );
     }
 
+    const attachments =
+      file && file.size > 0
+        ? [
+            {
+              filename: file.name,
+              content: Buffer.from(await file.arrayBuffer()),
+              contentType: file.type || "application/octet-stream",
+            },
+          ]
+        : [];
+
+    const submittedAt = new Date().toLocaleString("en-IN", {
+      dateStyle: "medium",
+      timeStyle: "short",
+      timeZone: "Asia/Kolkata",
+    });
+
+    await transporter.sendMail({
+      from: `"RowMend Studio Contact Form" <${smtpUser}>`,
+      to: contactTo,
+      replyTo: contact,
+      subject: `New cleanup request from ${name}`,
+      text: [
+        "New contact form submission",
+        "",
+        `Name: ${name}`,
+        `Contact: ${contact}`,
+        `Service: ${service || "Spreadsheet cleanup"}`,
+        `Submitted: ${submittedAt}`,
+        "",
+        "Description:",
+        description,
+        "",
+        file && file.size > 0 ? `Attachment: ${file.name}` : "Attachment: None",
+      ].join("\n"),
+      html: `
+        <div style="font-family: Arial, sans-serif; color: #171c18; line-height: 1.6;">
+          <h2 style="margin: 0 0 16px;">New contact form submission</h2>
+          <p style="margin: 0 0 8px;"><strong>Name:</strong> ${escapeHtml(name)}</p>
+          <p style="margin: 0 0 8px;"><strong>Contact:</strong> ${escapeHtml(contact)}</p>
+          <p style="margin: 0 0 8px;"><strong>Service:</strong> ${escapeHtml(service || "Spreadsheet cleanup")}</p>
+          <p style="margin: 0 0 16px;"><strong>Submitted:</strong> ${escapeHtml(submittedAt)}</p>
+          <p style="margin: 0 0 8px;"><strong>Description:</strong></p>
+          <div style="padding: 12px 14px; border: 1px solid #dfe8de; background: #f4faf1; border-radius: 12px; white-space: pre-wrap;">${escapeHtml(description)}</div>
+          <p style="margin: 16px 0 0;"><strong>Attachment:</strong> ${file && file.size > 0 ? escapeHtml(file.name) : "None"}</p>
+        </div>
+      `,
+      attachments,
+    });
+
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (error) {
+    console.error("Contact form delivery failed:", error);
+
     return NextResponse.json(
       { error: "Something went wrong. Please try again or reach out via WhatsApp." },
       { status: 500 },
     );
   }
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }

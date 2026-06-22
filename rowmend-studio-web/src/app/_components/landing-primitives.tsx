@@ -7,7 +7,7 @@ export function BrandMark({ className }: { className?: string }) {
     <span
       aria-hidden
       className={cn(
-        "inline-flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)] border border-line/80 bg-white text-brand shadow-[var(--shadow-card)]",
+        "inline-flex h-10 w-10 items-center justify-center rounded-md border border-line/80 bg-white text-brand shadow-(--shadow-card)",
         className,
       )}
     >
@@ -73,7 +73,7 @@ export function ActionLink({
       className={cn(
         "inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-4",
         tone === "primary" &&
-          "bg-brand text-white shadow-[var(--shadow-card)] hover:-translate-y-px hover:bg-brand-strong focus-visible:outline-brand",
+          "bg-brand text-white shadow-(--shadow-card) hover:-translate-y-px hover:bg-brand-strong focus-visible:outline-brand",
         tone === "secondary" &&
           "border border-brand/18 bg-white/96 text-ink hover:-translate-y-px hover:border-brand/30 hover:bg-surface-soft focus-visible:outline-brand",
         tone === "ghost" &&

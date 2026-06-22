@@ -1,3 +1,4 @@
+// File: rowmend-studio-web/src/app/_components/contact-form.tsx
 "use client";
 
 import { useActionState } from "react";
@@ -13,7 +14,7 @@ function SubmitButton({ pending }: { pending: boolean }) {
       type="submit"
       disabled={pending}
       className={cn(
-        "inline-flex min-h-12 w-full items-center justify-center rounded-full px-5 py-3 text-sm font-semibold shadow-[var(--shadow-card)] transition sm:w-auto",
+        "inline-flex min-h-12 w-full items-center justify-center rounded-full px-5 py-3 text-sm font-semibold shadow-(--shadow-card) transition sm:w-auto",
         pending
           ? "cursor-not-allowed bg-brand/45 text-white/80"
           : "bg-brand text-white hover:bg-brand-strong focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand",
@@ -39,7 +40,7 @@ export default function ContactForm() {
 
   if (state.success) {
     return (
-      <div className="rounded-[var(--radius-lg)] border border-brand/14 bg-accent-soft p-8 text-center">
+      <div className="rounded-lg border border-brand/14 bg-accent-soft p-8 text-center">
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand/12">
           <svg className="h-7 w-7 text-brand" viewBox="0 0 24 24" fill="none">
             <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -72,7 +73,7 @@ export default function ContactForm() {
             name="name"
             type="text"
             autoComplete="name"
-            className="min-h-12 w-full min-w-0 rounded-[var(--radius-md)] border border-line bg-white px-4 text-base text-ink outline-none transition placeholder:text-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/10"
+            className="min-h-12 w-full min-w-0 rounded-md border border-line bg-white px-4 text-base text-ink outline-none transition placeholder:text-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/10"
             placeholder="Your name"
           />
           <span className="text-xs leading-5 font-normal text-muted">
@@ -87,7 +88,7 @@ export default function ContactForm() {
             name="contact"
             type="email"
             autoComplete="email"
-            className="min-h-12 w-full min-w-0 rounded-[var(--radius-md)] border border-line bg-white px-4 text-base text-ink outline-none transition placeholder:text-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/10"
+            className="min-h-12 w-full min-w-0 rounded-md border border-line bg-white px-4 text-base text-ink outline-none transition placeholder:text-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/10"
             placeholder="you@example.com"
           />
           <span className="text-xs leading-5 font-normal text-muted">
@@ -100,7 +101,7 @@ export default function ContactForm() {
         What do you need cleaned or reviewed?
         <select
           name="service"
-          className="min-h-12 w-full min-w-0 rounded-[var(--radius-md)] border border-line bg-white px-4 text-base text-ink outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10"
+          className="min-h-12 w-full min-w-0 rounded-md border border-line bg-white px-4 text-base text-ink outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10"
           defaultValue="Spreadsheet cleanup"
         >
           {serviceOptions.map((service) => (
@@ -120,7 +121,7 @@ export default function ContactForm() {
           required
           name="description"
           rows={5}
-          className="w-full min-w-0 rounded-[var(--radius-md)] border border-line bg-white px-4 py-3 text-base text-ink outline-none transition placeholder:text-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/10"
+          className="w-full min-w-0 rounded-md border border-line bg-white px-4 py-3 text-base text-ink outline-none transition placeholder:text-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/10"
           placeholder="Example: CRM export with duplicate contacts, inconsistent phone formats, and missing owner fields. Need a cleaned Excel file plus a review summary."
         />
         <span className="text-xs leading-5 font-normal text-muted">
@@ -133,7 +134,7 @@ export default function ContactForm() {
         <input
           name="file"
           type="file"
-          className="min-h-12 w-full min-w-0 max-w-full overflow-hidden rounded-[var(--radius-md)] border border-dashed border-line bg-white px-4 py-3 text-sm text-muted file:mr-3 file:max-w-full file:truncate file:rounded-full file:border file:border-brand/16 file:bg-accent-soft file:px-4 file:py-2 file:text-sm file:font-semibold file:text-brand"
+          className="min-h-12 w-full min-w-0 max-w-full overflow-hidden rounded-md border border-dashed border-line bg-white px-4 py-3 text-sm text-muted file:mr-3 file:max-w-full file:truncate file:rounded-full file:border file:border-brand/16 file:bg-accent-soft file:px-4 file:py-2 file:text-sm file:font-semibold file:text-brand"
           accept=".csv,.xlsx,.xls,.pdf,.doc,.docx,.txt,.mp3,.mp4,.wav,.m4a"
         />
         <span className="text-xs leading-5 font-normal text-muted">
@@ -142,7 +143,7 @@ export default function ContactForm() {
       </label>
 
       {state.error && (
-        <p className="rounded-[var(--radius-sm)] bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
+        <p className="rounded-sm bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
           {state.error}
         </p>
       )}
