@@ -1,19 +1,12 @@
-import {
-  brandName,
-  serviceOptions,
-  type Highlight,
-} from "../_content/site-content";
-
-export function cx(...classes: Array<string | false | null | undefined>) {
-  return classes.filter(Boolean).join(" ");
-}
+import { cn } from "@/lib/cn";
+import { brandName, serviceOptions, type Highlight } from "../_content/site-content";
 
 export function BrandMark({ className }: { className?: string }) {
   return (
     <span
       aria-hidden
-      className={cx(
-        "inline-flex h-11 w-11 items-center justify-center rounded-[1.2rem] border border-white/20 bg-brand text-white shadow-[var(--shadow-card)]",
+      className={cn(
+        "inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] border border-white/20 bg-brand text-white shadow-[var(--shadow-card)]",
         className,
       )}
     >
@@ -44,8 +37,8 @@ export function SectionIntro({
   centered?: boolean;
 }) {
   return (
-    <div className={cx("max-w-3xl space-y-4", centered && "mx-auto text-center")}>
-      <p className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-brand">
+    <div className={cn("max-w-3xl space-y-4", centered && "mx-auto text-center")}>
+      <p className="font-mono text-[0.7rem] font-semibold uppercase tracking-[0.26em] text-brand">
         {eyebrow}
       </p>
       <h2 className="font-serif text-balance text-3xl font-semibold tracking-[-0.04em] text-ink sm:text-4xl lg:text-[2.9rem] lg:leading-[1.08]">
@@ -75,7 +68,7 @@ export function ActionLink({
     <a
       href={href}
       aria-label={ariaLabel}
-      className={cx(
+      className={cn(
         "inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-4",
         tone === "primary" &&
           "bg-brand text-white shadow-[var(--shadow-card)] hover:bg-brand-strong focus-visible:outline-brand",
@@ -95,7 +88,7 @@ export function CheckMark({ className }: { className?: string }) {
   return (
     <svg
       aria-hidden
-      className={cx("mt-1 h-4 w-4 flex-none text-accent", className)}
+      className={cn("mt-1 h-4 w-4 flex-none text-accent", className)}
       viewBox="0 0 16 16"
       fill="none"
     >
@@ -181,9 +174,9 @@ export function DataRow({
   tone?: "neutral" | "danger" | "success";
 }) {
   return (
-    <div className="grid grid-cols-[18px_1fr] items-center gap-3 rounded-[1.15rem] border border-line/80 bg-surface px-3 py-2.5">
+    <div className="grid grid-cols-[18px_1fr] items-center gap-3 rounded-[var(--radius-sm)] border border-line/80 bg-surface px-3 py-2.5">
       <span
-        className={cx(
+        className={cn(
           "h-2.5 w-2.5 rounded-full",
           tone === "neutral" && "bg-line",
           tone === "danger" && "bg-[#c57a63]",
@@ -197,7 +190,7 @@ export function DataRow({
 
 export function ProofCard({ item }: { item: Highlight }) {
   return (
-    <article className="rounded-[1.2rem] border border-line/60 bg-transparent p-4">
+    <article className="rounded-[var(--radius-md)] border border-line/60 bg-white/42 p-4 backdrop-blur-sm">
       <h2 className="text-sm font-semibold text-ink">{item.title}</h2>
       <p className="mt-2 text-sm leading-6 text-muted">{item.detail}</p>
     </article>

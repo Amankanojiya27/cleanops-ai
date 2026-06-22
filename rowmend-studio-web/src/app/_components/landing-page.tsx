@@ -1,3 +1,4 @@
+import { cn } from "@/lib/cn";
 import {
   afterItems,
   audienceChips,
@@ -33,15 +34,15 @@ import {
   ProofCard,
   SectionIntro,
   ServiceIcon,
-  cx,
 } from "./landing-primitives";
+import ContactForm from "./contact-form";
 import SiteFooter from "./site-footer";
 import SiteHeader from "./site-header";
 
 function HeroSection() {
   return (
     <section id="home" className="border-b border-line/70">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-14 pt-10 sm:px-6 sm:pb-18 lg:grid-cols-[1.03fr_0.97fr] lg:pb-24 lg:pt-18">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-14 pt-10 sm:px-6 sm:pb-18 lg:grid-cols-[1fr_1fr] lg:pb-24 lg:pt-18">
         <div className="relative z-10 space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-brand/12 bg-white/88 px-3 py-2 shadow-[var(--shadow-card)] backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-accent" />
@@ -69,13 +70,13 @@ function HeroSection() {
             </ActionLink>
           </div>
 
-          <div className="grid gap-3 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+          <div className="grid gap-3 sm:grid-cols-3">
             {heroHighlights.map((item) => (
               <ProofCard key={item.title} item={item} />
             ))}
           </div>
 
-          <div className="grid gap-4 rounded-[1.8rem] border border-line/70 bg-white/72 p-4 shadow-[var(--shadow-card)] md:grid-cols-[1.1fr_0.9fr]">
+          <div className="grid gap-4 rounded-[var(--radius-lg)] border border-line/70 bg-white/72 p-4 shadow-[var(--shadow-card)] sm:grid-cols-[1fr_1fr]">
             <div className="space-y-3">
               <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted">
                 Best fit for
@@ -91,11 +92,11 @@ function HeroSection() {
                 ))}
               </div>
             </div>
-            <div className="grid gap-3 sm:grid-cols-3 md:grid-cols-1">
+            <div className="grid gap-3 sm:grid-cols-3">
               {heroMetrics.map((metric) => (
                 <div
                   key={metric.value}
-                  className="rounded-[1.1rem] border border-line/70 bg-surface px-4 py-3"
+                  className="rounded-[var(--radius-md)] border border-line/70 bg-surface px-4 py-3"
                 >
                   <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">
                     {metric.value}
@@ -108,8 +109,8 @@ function HeroSection() {
         </div>
 
         <div className="relative">
-          <div className="absolute inset-x-8 top-10 h-40 rounded-full bg-[radial-gradient(circle,rgba(123,143,105,0.16),transparent_70%)] blur-3xl" />
-          <div className="hero-float relative overflow-hidden rounded-[2.1rem] border border-line/75 bg-white/90 p-5 shadow-[var(--shadow-panel)] backdrop-blur">
+          <div className="absolute inset-x-8 top-0 h-40 rounded-full bg-[radial-gradient(circle,rgba(123,143,105,0.16),transparent_70%)] blur-3xl" />
+          <div className="relative overflow-hidden rounded-[var(--radius-lg)] border border-line/75 bg-white/90 p-5 shadow-[var(--shadow-panel)] backdrop-blur">
             <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(217,208,194,0.28)_1px,transparent_1px),linear-gradient(to_bottom,rgba(217,208,194,0.28)_1px,transparent_1px)] bg-[size:28px_28px] opacity-50" />
             <div className="relative space-y-5">
               <div className="flex flex-wrap items-center justify-between gap-3">
@@ -127,7 +128,7 @@ function HeroSection() {
               </div>
 
               <div className="grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-center">
-                <div className="space-y-3 rounded-[1.45rem] border border-line/70 bg-[#fbf8f2] p-4">
+                <div className="space-y-3 rounded-[var(--radius-md)] border border-line/70 bg-[#fbf8f2] p-4">
                   <div className="flex items-center justify-between gap-3">
                     <span className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
                       Before
@@ -156,7 +157,7 @@ function HeroSection() {
                   </svg>
                 </div>
 
-                <div className="space-y-3 rounded-[1.45rem] border border-brand/10 bg-surface p-4 shadow-[var(--shadow-card)]">
+                <div className="space-y-3 rounded-[var(--radius-md)] border border-brand/10 bg-surface p-4 shadow-[var(--shadow-card)]">
                   <div className="flex items-center justify-between gap-3">
                     <span className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
                       After
@@ -174,8 +175,8 @@ function HeroSection() {
                 </div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-[1.08fr_0.92fr]">
-                <div className="rounded-[1.45rem] border border-line/70 bg-surface-soft p-4">
+              <div className="grid gap-4 sm:grid-cols-[1fr_1fr]">
+                <div className="rounded-[var(--radius-md)] border border-line/70 bg-surface-soft p-4">
                   <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
                     Included with delivery
                   </p>
@@ -188,11 +189,11 @@ function HeroSection() {
                     ))}
                   </div>
                 </div>
-                <div className="rounded-[1.45rem] border border-brand/10 bg-brand p-4 text-white">
+                <div className="rounded-[var(--radius-md)] border border-brand/10 bg-brand p-4 text-white">
                   <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/70">
                     Scope note
                   </p>
-                  <p className="mt-3 text-sm leading-7 text-white/84">
+                  <p className="mt-3 text-sm leading-7 text-white/85">
                     Price, timing, and delivery format are confirmed before work
                     starts, so the handoff stays straightforward.
                   </p>
@@ -219,7 +220,7 @@ function HeroSection() {
 function ContextSection() {
   return (
     <section className="border-y border-line/70 bg-white/60">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-18 sm:px-6 sm:py-22 lg:grid-cols-[0.92fr_1.08fr]">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-18 sm:px-6 sm:py-22 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
         <div className="space-y-8">
           <SectionIntro
             eyebrow="The problem"
@@ -227,34 +228,67 @@ function ContextSection() {
             description={sectionCopy.problem.description}
           />
 
-          <div className="space-y-3">
+          <div className="overflow-hidden rounded-[var(--radius-lg)] border border-line/70 bg-surface shadow-[var(--shadow-panel)]">
             {problems.map((problem, index) => (
               <article
                 key={problem.title}
-                className={cx(
-                  "rounded-[1.6rem] border border-line/70 bg-surface p-5 shadow-[var(--shadow-card)]",
-                  index === 1 && "lg:ml-8",
+                className={cn(
+                  "grid gap-4 px-5 py-5 sm:grid-cols-[auto_1fr] sm:gap-5 sm:px-6",
+                  index > 0 && "border-t border-line/70",
+                  index === 1 && "bg-surface-soft/70",
                 )}
               >
-                <h3 className="text-lg font-semibold tracking-[-0.02em] text-ink">
-                  {problem.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-muted">{problem.detail}</p>
+                <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+                  0{index + 1}
+                </p>
+                <div>
+                  <h3 className="text-lg font-semibold tracking-[-0.02em] text-ink">
+                    {problem.title}
+                  </h3>
+                  <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">
+                    {problem.detail}
+                  </p>
+                </div>
               </article>
             ))}
           </div>
+
+          <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,0.84fr)]">
+            <div className="rounded-[var(--radius-lg)] border border-line/70 bg-surface-soft p-5">
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
+                Where the drag usually shows up
+              </p>
+              <p className="mt-4 text-sm leading-7 text-muted">
+                End-of-week cleanup, pre-client handoffs, CRM imports, internal notes,
+                and follow-up lists usually end up absorbing the hours that should be
+                spent on revenue-generating work.
+              </p>
+            </div>
+            <div className="rounded-[var(--radius-lg)] border border-brand/10 bg-brand p-5 text-white">
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/70">
+                Better outcome
+              </p>
+              <p className="mt-4 text-sm leading-7 text-white/82">
+                The goal is not more tooling. It is a calmer handoff, cleaner data, and
+                fewer late cleanup sessions inside a small team.
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="rounded-[2rem] border border-brand/10 bg-brand p-6 text-white shadow-[0_24px_60px_rgba(23,33,38,0.12)]">
+        <div className="grid content-start gap-5">
+          <div className="rounded-[var(--radius-lg)] border border-brand/10 bg-brand p-6 text-white shadow-[0_24px_60px_rgba(23,33,38,0.12)]">
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/70">
               Trust and fit
             </p>
-            <div className="mt-5 grid gap-4">
-              {proofItems.map((item) => (
+            <div className="mt-5 space-y-0">
+              {proofItems.map((item, index) => (
                 <div
                   key={item.title}
-                  className="rounded-[1.15rem] border border-white/10 bg-white/6 px-4 py-4"
+                  className={cn(
+                    "px-1 py-4",
+                    index > 0 && "border-t border-white/10",
+                  )}
                 >
                   <p className="text-sm font-semibold text-white">{item.title}</p>
                   <p className="mt-1 text-sm leading-6 text-white/78">{item.detail}</p>
@@ -263,8 +297,8 @@ function ContextSection() {
             </div>
           </div>
 
-          <div className="space-y-5">
-            <div className="rounded-[1.8rem] border border-line/70 bg-surface p-5 shadow-[var(--shadow-card)]">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div className="rounded-[var(--radius-lg)] border border-line/70 bg-surface p-5 shadow-[var(--shadow-card)]">
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">
                 Best suited to
               </p>
@@ -280,7 +314,7 @@ function ContextSection() {
               </div>
             </div>
 
-            <div className="rounded-[1.8rem] border border-line/70 bg-surface-soft p-5">
+            <div className="rounded-[var(--radius-lg)] border border-line/70 bg-surface-soft p-5">
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
                 Common file types
               </p>
@@ -305,26 +339,46 @@ function ContextSection() {
 function ServicesSection() {
   return (
     <section id="services" className="mx-auto max-w-7xl px-4 py-18 sm:px-6 sm:py-22">
-      <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
-        <SectionIntro
-          eyebrow="Services"
-          title={sectionCopy.services.title}
-          description={sectionCopy.services.description}
-        />
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)]">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <SectionIntro
+            eyebrow="Services"
+            title={sectionCopy.services.title}
+            description={sectionCopy.services.description}
+          />
 
-        <div className="grid gap-5">
+          <div className="mt-8 rounded-[var(--radius-lg)] border border-line/70 bg-surface-soft p-5">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">
+              Typical uses
+            </p>
+            <div className="mt-4 space-y-3 text-sm leading-7 text-muted">
+              <p>One export that needs cleanup before the next handoff.</p>
+              <p>Recurring admin work that keeps reappearing at the wrong time.</p>
+              <p>A file, transcript, or document that needs structure before it is useful.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-[var(--radius-lg)] border border-line/70 bg-surface/72 px-5 shadow-[var(--shadow-panel)] sm:px-6">
           {serviceOptions.map((service, index) => (
             <article
               key={service.title}
-              className={cx(
-                "grid gap-5 rounded-[1.85rem] border border-line/70 bg-surface p-6 shadow-[var(--shadow-card)] md:grid-cols-[auto_1fr_auto]",
-                index % 2 === 0 && "md:mr-10",
-                index % 2 === 1 && "md:ml-10",
+              className={cn(
+                "grid gap-5 py-6 md:grid-cols-[4.5rem_minmax(0,1fr)_15rem] md:items-start",
+                index > 0 && "border-t border-line/70",
+                index % 2 === 1 && "md:pl-10",
+                index % 3 === 2 && "md:pl-18",
               )}
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface-soft">
-                <ServiceIcon name={service.icon} />
+              <div className="flex items-center gap-3 md:block">
+                <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+                  0{index + 1}
+                </p>
+                <div className="flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-surface-soft md:mt-3">
+                  <ServiceIcon name={service.icon} />
+                </div>
               </div>
+
               <div>
                 <h3 className="text-xl font-semibold tracking-[-0.03em] text-ink">
                   {service.title}
@@ -333,11 +387,12 @@ function ServicesSection() {
                   {service.description}
                 </p>
               </div>
-              <div className="space-y-2 border-t border-line/70 pt-4 text-sm md:border-t-0 md:border-l md:pl-5 md:pt-0">
-                <p className="font-mono font-semibold uppercase tracking-[0.16em] text-brand">
+
+              <div className="grid gap-3 border-t border-line/70 pt-4 text-sm md:border-l md:border-t-0 md:pl-5 md:pt-0">
+                <p className="inline-flex w-fit rounded-full border border-brand/12 bg-brand/6 px-3 py-1.5 font-mono font-semibold uppercase tracking-[0.16em] text-brand">
                   {service.price}
                 </p>
-                <p className="text-muted md:max-w-[16rem]">{service.audience}</p>
+                <p className="text-muted md:max-w-[15rem]">{service.audience}</p>
               </div>
             </article>
           ))}
@@ -350,7 +405,7 @@ function ServicesSection() {
 function TransformationSection() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-18 sm:px-6 sm:py-22">
-      <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+      <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-start">
         <SectionIntro
           eyebrow="Before and after"
           title={sectionCopy.transformation.title}
@@ -358,8 +413,8 @@ function TransformationSection() {
         />
 
         <div className="space-y-5">
-          <div className="grid gap-5 rounded-[2.15rem] border border-line/70 bg-surface p-5 shadow-[var(--shadow-panel)] lg:grid-cols-[0.92fr_1.08fr]">
-            <div className="rounded-[1.6rem] bg-[#fbf8f2] p-5">
+          <div className="grid gap-5 rounded-[var(--radius-lg)] border border-line/70 bg-surface p-5 shadow-[var(--shadow-panel)] lg:grid-cols-[1fr_1fr]">
+            <div className="rounded-[var(--radius-md)] bg-[#fbf8f2] p-5">
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
                 Before
               </p>
@@ -373,21 +428,21 @@ function TransformationSection() {
               </ul>
             </div>
 
-            <div className="grid gap-5 lg:grid-cols-[1fr_0.84fr]">
-              <div className="rounded-[1.6rem] bg-accent-soft/78 p-5">
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
-                After
-              </p>
-              <ul className="mt-4 space-y-3">
-                {afterItems.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm leading-7 text-ink">
-                    <CheckMark />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-              <div className="rounded-[1.6rem] border border-brand/10 bg-brand p-5 text-white">
+            <div className="grid gap-5">
+              <div className="rounded-[var(--radius-md)] bg-accent-soft/78 p-5">
+                <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">
+                  After
+                </p>
+                <ul className="mt-4 space-y-3">
+                  {afterItems.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-7 text-ink">
+                      <CheckMark />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-[var(--radius-md)] border border-brand/10 bg-brand p-5 text-white">
                 <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/70">
                   What the handoff includes
                 </p>
@@ -411,7 +466,7 @@ function TransformationSection() {
 function ProcessSection() {
   return (
     <section id="process" className="border-y border-line/70 bg-surface-soft/60">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-18 sm:px-6 sm:py-22 lg:grid-cols-[1.06fr_0.94fr]">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-18 sm:px-6 sm:py-22 lg:grid-cols-[1fr_1fr]">
         <div>
           <SectionIntro
             eyebrow="How it works"
@@ -419,38 +474,66 @@ function ProcessSection() {
             description={sectionCopy.process.description}
           />
 
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
-            {steps.map((step) => (
+          <div className="mt-10 overflow-hidden rounded-[var(--radius-lg)] border border-line/70 bg-surface shadow-[var(--shadow-panel)]">
+            {steps.map((step, index) => (
               <article
                 key={step.number}
-                className="rounded-[1.75rem] border border-line/70 bg-surface p-6 shadow-[var(--shadow-card)]"
+                className={cn(
+                  "grid gap-5 px-5 py-5 sm:grid-cols-[auto_1fr] sm:gap-6 sm:px-6",
+                  index > 0 && "border-t border-line/70",
+                )}
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand text-sm font-semibold text-white">
-                  {step.number}
+                <div className="flex gap-4 sm:flex-col sm:items-center">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand text-sm font-semibold text-white">
+                    {step.number}
+                  </div>
+                  {index < steps.length - 1 ? (
+                    <span className="hidden h-full w-px bg-line sm:block" />
+                  ) : null}
                 </div>
-                <h3 className="mt-5 text-lg font-semibold tracking-[-0.02em] text-ink">
-                  {step.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-muted">{step.detail}</p>
+                <div>
+                  <h3 className="text-lg font-semibold tracking-[-0.02em] text-ink">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 max-w-2xl text-sm leading-7 text-muted">
+                    {step.detail}
+                  </p>
+                </div>
               </article>
             ))}
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-line/70 bg-surface p-6 shadow-[var(--shadow-panel)]">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">
-            Why the process works for lean teams
-          </p>
-          <div className="mt-5 space-y-4">
-            {benefits.map((benefit) => (
-              <div
-                key={benefit}
-                className="flex gap-3 rounded-[1.2rem] border border-line/70 bg-surface-soft px-4 py-4"
-              >
-                <CheckMark />
-                <p className="text-sm leading-7 text-ink">{benefit}</p>
-              </div>
-            ))}
+        <div className="space-y-5 lg:pt-24">
+          <div className="rounded-[var(--radius-lg)] border border-brand/10 bg-brand p-6 text-white shadow-[0_24px_60px_rgba(23,33,38,0.12)]">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/70">
+              Why the process works for lean teams
+            </p>
+            <div className="mt-5 space-y-0">
+              {benefits.map((benefit, index) => (
+                <div
+                  key={benefit}
+                  className={cn(
+                    "flex gap-3 px-1 py-4",
+                    index > 0 && "border-t border-white/10",
+                  )}
+                >
+                  <CheckMark className="text-[#d7e4d9]" />
+                  <p className="text-sm leading-7 text-white/86">{benefit}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-[var(--radius-lg)] border border-line/70 bg-surface p-5">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
+              Practical advantage
+            </p>
+            <p className="mt-4 text-sm leading-7 text-muted">
+              There is no long onboarding flow here. Most jobs start with a sample
+              file, a short description, and a clear confirmation on scope, timing,
+              and price before any work begins.
+            </p>
           </div>
         </div>
       </div>
@@ -461,7 +544,7 @@ function ProcessSection() {
 function PricingSection() {
   return (
     <section id="pricing" className="mx-auto max-w-7xl px-4 py-18 sm:px-6 sm:py-22">
-      <div className="grid gap-8 lg:grid-cols-[0.84fr_1.16fr]">
+      <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
         <SectionIntro
           eyebrow="Pricing"
           title={sectionCopy.pricing.title}
@@ -473,8 +556,8 @@ function PricingSection() {
             {plans.map((plan) => (
               <article
                 key={plan.name}
-                className={cx(
-                  "rounded-[2rem] border p-6 shadow-[var(--shadow-card)]",
+                className={cn(
+                  "rounded-[var(--radius-lg)] border p-6 shadow-[var(--shadow-card)]",
                   plan.featured
                     ? "border-brand bg-brand text-white shadow-[0_26px_70px_rgba(23,33,38,0.14)] lg:-translate-y-4"
                     : "border-line/70 bg-surface",
@@ -486,7 +569,7 @@ function PricingSection() {
                       {plan.name}
                     </h3>
                     <p
-                      className={cx(
+                      className={cn(
                         "mt-3 text-sm leading-7",
                         plan.featured ? "text-white/80" : "text-muted",
                       )}
@@ -519,9 +602,12 @@ function PricingSection() {
             ))}
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
-            <div className="rounded-[1.8rem] border border-line/70 bg-surface-soft p-5">
-              <p className="text-sm leading-7 text-muted">{pricingNote}</p>
+          <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
+            <div className="rounded-[var(--radius-lg)] border border-brand/10 bg-surface-soft p-5">
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">
+                Pricing note
+              </p>
+              <p className="mt-4 text-sm leading-7 text-muted">{pricingNote}</p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <ActionLink href="#contact">Send a File</ActionLink>
                 <ActionLink href="#contact" tone="secondary">
@@ -530,14 +616,19 @@ function PricingSection() {
               </div>
             </div>
 
-            <div id="faq" className="space-y-3">
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">
-                Practical questions
-              </p>
-              {faqs.map((item) => (
+            <div
+              id="faq"
+              className="overflow-hidden rounded-[var(--radius-lg)] border border-line/70 bg-surface shadow-[var(--shadow-card)]"
+            >
+              <div className="border-b border-line/70 px-5 py-4">
+                <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">
+                  Practical questions
+                </p>
+              </div>
+              {faqs.map((item, index) => (
                 <details
                   key={item.question}
-                  className="group rounded-[1.4rem] border border-line/70 bg-surface p-5 shadow-[var(--shadow-card)]"
+                  className={cn("group px-5 py-5", index > 0 && "border-t border-line/70")}
                 >
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-base font-semibold tracking-[-0.02em] text-ink">
                     {item.question}
@@ -561,7 +652,7 @@ function PricingSection() {
 function ContactSection() {
   return (
     <section id="contact" className="mx-auto max-w-7xl px-4 py-18 sm:px-6 sm:py-22">
-      <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
+      <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
         <div className="space-y-6">
           <SectionIntro
             eyebrow="Final CTA"
@@ -573,12 +664,12 @@ function ContactSection() {
             {contactSupportText}
           </p>
 
-          <div className="grid gap-4">
+          <div className="grid gap-4 sm:grid-cols-2">
             {contactCards.map((card) => (
               <a
                 key={card.title}
                 href={card.href}
-                className="rounded-[1.5rem] border border-line/70 bg-surface p-5 shadow-[var(--shadow-card)] transition hover:-translate-y-0.5 hover:shadow-[0_24px_56px_rgba(23,33,38,0.08)]"
+                className="rounded-[var(--radius-lg)] border border-line/70 bg-surface p-5 shadow-[var(--shadow-card)] transition hover:-translate-y-0.5 hover:shadow-[0_24px_56px_rgba(23,33,38,0.08)]"
               >
                 <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">
                   {card.channel}
@@ -592,91 +683,12 @@ function ContactSection() {
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-line/70 bg-surface p-6 shadow-[var(--shadow-panel)]">
-          <form
-            action={`mailto:${emailAddress}`}
-            method="post"
-            encType="text/plain"
-            className="grid gap-5"
-          >
-            <div className="grid gap-5 md:grid-cols-2">
-              <label className="grid gap-2 text-sm font-medium text-ink">
-                Name
-                <input
-                  required
-                  name="name"
-                  type="text"
-                  autoComplete="name"
-                  className="min-h-12 rounded-2xl border border-line bg-canvas px-4 text-base text-ink outline-none transition placeholder:text-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/10"
-                  placeholder="Your name"
-                />
-              </label>
-
-              <label className="grid gap-2 text-sm font-medium text-ink">
-                Email or WhatsApp
-                <input
-                  required
-                  name="contact"
-                  type="text"
-                  autoComplete="email"
-                  className="min-h-12 rounded-2xl border border-line bg-canvas px-4 text-base text-ink outline-none transition placeholder:text-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/10"
-                  placeholder="Email address or number"
-                />
-              </label>
-            </div>
-
-            <label className="grid gap-2 text-sm font-medium text-ink">
-              Service needed
-              <select
-                name="service"
-                className="min-h-12 rounded-2xl border border-line bg-canvas px-4 text-base text-ink outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10"
-                defaultValue="Spreadsheet cleanup"
-              >
-                {serviceOptions.map((service) => (
-                  <option key={service.title} value={service.title}>
-                    {service.title}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <label className="grid gap-2 text-sm font-medium text-ink">
-              File or task description
-              <textarea
-                required
-                name="description"
-                rows={6}
-                className="rounded-[1.5rem] border border-line bg-canvas px-4 py-3 text-base text-ink outline-none transition placeholder:text-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/10"
-                placeholder="Tell us what needs to be cleaned, organized, summarized, or supported."
-              />
-            </label>
-
-            <label className="grid gap-2 text-sm font-medium text-ink">
-              Upload file (optional)
-              <input
-                name="file"
-                type="file"
-                className="min-h-12 rounded-2xl border border-dashed border-line bg-canvas px-4 py-3 text-sm text-muted file:mr-4 file:rounded-full file:border-0 file:bg-brand file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white"
-                accept=".csv,.xlsx,.xls,.pdf,.doc,.docx,.txt,.mp3,.mp4,.wav,.m4a"
-                aria-describedby="file-help"
-              />
-              <span id="file-help" className="text-sm leading-6 text-muted">
-                This opens an email draft. If your mail app does not attach the
-                file automatically, send it in your reply or on WhatsApp after scope confirmation.
-              </span>
-            </label>
-
-            <button
-              type="submit"
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-5 py-3 text-sm font-semibold text-white shadow-[var(--shadow-card)] transition hover:bg-brand-strong focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
-            >
-              Prepare Email Request
-            </button>
-          </form>
+        <div className="rounded-[var(--radius-lg)] border border-line/70 bg-surface p-6 shadow-[var(--shadow-panel)]">
+          <ContactForm />
         </div>
       </div>
 
-      <div className="mt-8 rounded-[2rem] border border-brand/10 bg-brand px-6 py-10 text-white shadow-[0_24px_60px_rgba(23,33,38,0.14)] sm:px-10">
+      <div className="mt-8 rounded-[var(--radius-lg)] border border-brand/10 bg-brand px-6 py-10 text-white shadow-[0_24px_60px_rgba(23,33,38,0.14)] sm:px-10">
         <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/70">
@@ -712,11 +724,6 @@ function ContactSection() {
 export default function LandingPage() {
   return (
     <div className="relative overflow-x-clip bg-canvas text-ink">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[40rem] bg-[radial-gradient(circle_at_top_left,rgba(123,143,105,0.12),transparent_32%),radial-gradient(circle_at_top_right,rgba(32,59,69,0.14),transparent_30%),linear-gradient(to_bottom,rgba(255,255,255,0.72),transparent)]"
-      />
-
       <a
         className="sr-only absolute left-4 top-4 z-50 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white focus:not-sr-only"
         href="#main-content"

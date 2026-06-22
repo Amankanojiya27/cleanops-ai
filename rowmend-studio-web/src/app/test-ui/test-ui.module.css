@@ -1,0 +1,118 @@
+.heroAura {
+  position: absolute;
+  inset: auto;
+  border-radius: 9999px;
+  filter: blur(48px);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.heroBeam {
+  position: absolute;
+  inset: -35% auto auto 18%;
+  width: 18rem;
+  height: 18rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0)),
+    linear-gradient(135deg, rgba(123, 143, 105, 0.18), rgba(32, 59, 69, 0.08));
+  clip-path: polygon(45% 0%, 60% 0%, 100% 100%, 0% 100%);
+  opacity: 0.75;
+  transform-origin: top center;
+  animation: hero-sweep 9s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.heroGrid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-position: center;
+  background-size: 3rem 3rem;
+}
+
+.floatChip {
+  animation: float-chip 5.6s ease-in-out infinite;
+}
+
+.floatChipDelayed {
+  animation: float-chip 5.6s ease-in-out 1.5s infinite;
+}
+
+.signalShell {
+  position: relative;
+  overflow: hidden;
+}
+
+.signalShell::after {
+  content: "";
+  position: absolute;
+  inset: -120% auto auto -10%;
+  width: 42%;
+  height: 320%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0)
+  );
+  transform: rotate(18deg);
+  animation: signal-scan 4.2s linear infinite;
+}
+
+.pulseDot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes hero-sweep {
+  0% {
+    transform: rotate(-8deg) translate3d(-2rem, -1rem, 0);
+  }
+
+  100% {
+    transform: rotate(8deg) translate3d(3rem, 1rem, 0);
+  }
+}
+
+@keyframes float-chip {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes signal-scan {
+  0% {
+    transform: translate3d(0, -14%, 0) rotate(18deg);
+  }
+
+  100% {
+    transform: translate3d(160%, 16%, 0) rotate(18deg);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroBeam,
+  .floatChip,
+  .floatChipDelayed,
+  .pulseDot,
+  .signalShell::after {
+    animation: none !important;
+  }
+}

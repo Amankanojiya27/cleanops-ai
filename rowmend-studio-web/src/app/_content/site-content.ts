@@ -1,4 +1,3 @@
-// File: src/app/_content/site-content.ts
 export type NavItem = {
   href: string;
   label: string;
@@ -275,14 +274,6 @@ export const plans: Plan[] = [
   },
 ];
 
-export const useCases = [
-  "Clean 1,000 messy contacts before a CRM import",
-  "Turn a podcast recording into a transcript plus summary",
-  "Build a lead research sheet for outreach or sourcing",
-  "Prepare an ecommerce product CSV for upload",
-  "Summarize long business documents into action notes",
-];
-
 export const benefits = [
   "Human-reviewed output, not raw AI-generated drafts.",
   "Clear scope, timing, and pricing before work begins.",
@@ -346,20 +337,10 @@ export const sectionCopy = {
     description:
       "The process stays lightweight, but the handoff stays disciplined.",
   },
-  useCases: {
-    title: `Typical tasks ${brandName} is asked to clean up.`,
-    description:
-      "Concrete, practical jobs tend to convert better than broad promises, so the site leans into what the work actually looks like.",
-  },
   pricing: {
     title: "Straightforward pricing, plus the details people usually ask first.",
     description:
       "Choose the level that fits the work, then review the practical questions alongside it instead of hunting for them further down the page.",
-  },
-  faq: {
-    title: "Questions people usually ask before sending a task.",
-    description:
-      "Clear answers help reduce hesitation and make the next step easier.",
   },
   contact: {
     title: "Have a messy file or recurring admin task? Send it over.",
