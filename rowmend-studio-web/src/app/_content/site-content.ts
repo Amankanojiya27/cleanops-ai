@@ -279,7 +279,7 @@ export const footerNote =
 export const footerTrust =
   "Reviewed delivery, private file handling, and clear scope before work begins.";
 
-export const emailAddress = "hello@rowmend.studio";
+export const emailAddress = process.env.CONTACT_TO;
 
 export const whatsappLink =
-  "https://wa.me/919999999999?text=Hi%20RowMend%20Studio%2C%20I%20want%20a%20cleanup%20estimate%20for%20a%20spreadsheet%20or%20CRM%20export.";
+  `https://wa.me/${process.env.PHONE_NUMBER}?text=Hi%20RowMend%20Studio%2C%20I%20want%20a%20cleanup%20estimate%20for%20a%20spreadsheet%20or%20CRM%20export.`;
